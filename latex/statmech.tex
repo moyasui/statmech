@@ -139,7 +139,7 @@ It follows from P.2(maximisation) and P.3(additivity).
  Consider a function of $ 2 $ variables $ F(x,y) $ 
  The differential of this is:
  \begin{equation}
- 	df = \frac{\partial f}{\partial x}\mid_y dx + \frac{\partial f}{\partial y}\mid_x dy 
+ 	df = \left (\frac{\partial f}{\partial x} \right )_y dx + \left (\frac{\partial f}{\partial y}\right )_x dy 
  \end{equation}
  This is an exact differential. \\
  Exact differential gives a \textbf{unique (does not depend on the integration path)} function (up to a constant) when integrated.
@@ -147,7 +147,7 @@ It follows from P.2(maximisation) and P.3(additivity).
  \[ \int_{{(0,0)}}^{{(x,y)}} {df} = \int_{{(0,0)}}^{{(,y)}} { \frac{\partial f}{\partial y} } \: d{y} + \int_{{(0,y)}}^{{(x,y)}} { \frac{\partial F}{\partial x} } \: d{x} \]
 \begin{shaded*}
 	Condition for exact differential:
-	\[ \frac{\partial f}{\partial y}\mid_x  = \frac{\partial g}{\partial x}\mid_y\] 
+	\[ \left( \frac{\partial f}{\partial y}\right)_x  = \left( \frac{\partial g}{\partial x}\right)_y\] 
 \end{shaded*}
 \begin{large}
 	\textbf{But not every differential} 
@@ -197,7 +197,7 @@ Here $ -1/p $ plays the role of an integrating factor.
 work can also be magnetic or electric.
 \subsubsection{Heat}%
 \[ dS = S(U+\text{\dj} Q, V, N) - S(U,V,N) \] 
-\[ = \frac{\partial S}{\partial U}\mid_{(v,N)} \text{\dj} Q  \] 
+\[ = \left( \frac{\partial S}{\partial U} \right)_{(v,N)} \text{\dj} Q  \] 
 \[ \implies \text{\dj} Q = T dS \] 
 
 \[ dS = \frac{1}{T} \text{\dj} Q \] 
@@ -207,18 +207,18 @@ work can also be magnetic or electric.
 $ dU = \text{\dj} Q + \text{\dj} W $ 
 \[ dU = T dS - pdV \] (N const)
 \[ U = U(S,V,N) \] 
-\[ dU = \frac{\partial U}{\partial S}\mid_{V,N} dS + \frac{\partial U}{\partial V}\mid_{S,N} dV + \frac{\partial U}{\partial N}\mid_{S,V} dN \] 
-\[ \frac{\partial U}{\partial S}\mid_{V,N} = T \] 
-\[ \frac{\partial U}{\partial V}\mid_{S,N} = -P \] 
-\[ \frac{\partial V}{\partial N}\mid_{(S,V)} \equiv \mu \] 
+\[ dU = \left ( \frac{\partial U}{\partial S}\right )_{V,N} dS + \left ( \frac{\partial U}{\partial V}\right )_{S,N} dV + \left( \frac{\partial U}{\partial N}\right )_{S,V} dN \] 
+\[ \left(\frac{\partial U}{\partial S}\right)_{V,N} = T \] 
+\[ \left(\frac{\partial U}{\partial V}\right)_{S,N} = -P \] 
+\[ \left(\frac{\partial V}{\partial N}\right)_{(S,V)} \equiv \mu \] 
 With N varying:
 \begin{shaded*}
 \[ dU = TdS - PdV + \mu dN \] 
 \end{shaded*}
 In entropy representation:
 	\[ S = S(U,V,N) \] 
-	\[ dS = \frac{\partial S}{\partial U}\mid_{(V,N)} + \frac{\partial S}{\partial V}\mid_{U,N} dV +
-	\frac{\partial S}{\partial N}\mid_{U,V} dN\] 	
+	\[ dS = \left(\frac{\partial S}{\partial U}\right)_{(V,N)} + \left(\frac{\partial S}{\partial V}\right)_{U,N} dV +
+	\left(\frac{\partial S}{\partial N}\right)_{U,V} dN\] 	
 \begin{shaded*}
 	\[ dS = \frac{1}{T} dV + \frac{P}{T}dV - \frac{\mu}{T}dN \] 
 \end{shaded*}
@@ -385,8 +385,8 @@ For energy:
 \[ U(\lambda S, \lambda V, \lambda N) = \lambda U(S,V,N) \] 
 Now vary $ \lambda $:
 Differentiate w.r.t $ \lambda $ and let $ \lambda =1 $ 
-\[ \text{LHS} = \frac{\partial }{\partial \lambda} U(\lambda S, \lambda V, \lambda N) = \frac{\partial }{\partial (\lambda S)} U(\lambda S, \lambda V, \lambda N) \frac{\partial (\lambda S)}{\partial \lambda}|_{\lambda = 1} + 
-\frac{\partial }{\partial \lambda V} U(\lambda S, \lambda V, \lambda N) \frac{\partial (\lambda V)}{\partial \lambda}|_{\lambda =1} \]
+\[ \text{LHS} = \frac{\partial }{\partial \lambda} U(\lambda S, \lambda V, \lambda N) = \frac{\partial }{\partial (\lambda S)} U(\lambda S, \lambda V, \lambda N) \left (\frac{\partial (\lambda S)}{\partial \lambda} \right )_{\lambda = 1} + 
+\frac{\partial }{\partial \lambda V} U(\lambda S, \lambda V, \lambda N) \left (\frac{\partial (\lambda V)}{\partial \lambda}\right )_{\lambda =1} \]
 \[ + \frac{\partial }{\partial (\lambda N)}U(\lambda S, \lambda V, \lambda N)\] 
 \[ \text{RHS} = U(S,V,N) \] 
 \begin{equation}
