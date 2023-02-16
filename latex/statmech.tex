@@ -737,5 +737,81 @@ and
 \[ P_c = \frac{N_kBT}{V_c-Nb} - a \frac{N^2}{V_c^2} = \frac{1}{27}\frac{a}{b^2} \] 
 \[ \frac{P_cV_c}{Nk_BT_c} = \frac{3}{8} \] Ideal gas: 1
 \end{shaded*}
-\end{document}
 
+\textbf{insert Fig.4} 
+Both unphysical, unstable.
+\[ P = -\left (\frac{\partial F}{\partial V} \right )_{T.N} \] 
+\[ \left (\frac{\partial P}{\partial V} \right )_{T,N} = - \left (\frac{\partial ^2F}{\partial V^2} \right )_{T,N} < 0 \] 
+For stability.
+\[ V = \left (\frac{\partial G}{\partial P} \right )_{T,N}\] 
+\[ \left (\frac{\partial V}{\partial P} \right )_{T,N} = \left (\frac{\partial ^2G}{\partial P^2} \right )_{T,N} < 0 \] second derivative of intensive variabel less than $ 0 $ for stability. 
+
+\textbf{insert Fig.5} 
+Cap:Van der Waal's gas at $ T < T_C $ 
+Stability
+\[ \left (\frac{\partial ^2F}{\partial V^2} \right )_{T,N} > 0 \Rightarrow \left (\frac{\partial P}{\partial V} \right )_{T,N} < 0\] 
+This is violated on D-F. Assumption of homogeneity breaks down. The homogeneous solution is unstable (unphysical. NOT realised) on D-F.
+
+\textbf{insert Fig.6}
+Maxwell construct: Choose a line which crosses the graph 3 times which also divides the area into $ 2 $ equal parts.
+In the region B-H there are 3 possible values for $ V $ given a $ P $ (one is unphysical (DF), but there are still two to choose from.)
+TD stable state at const. $ P,T,N $ minimises \textbf{Gibbs free energy}. 
+Calculate $ G $ !
+Van der Waal's gas is extensive: \[ U = TS - PV + \mu N \] 
+\[ G = U - TS + PV = \mu N \] 
+Recall Gibbs-Duhem relation: \[ d\mu = - \left(\frac{S}{N} \right)dT + \left( \frac{V}{N} \right) dP = \frac{V}{N}dP \] 
+\[ \implies G = \int dG = \int d \mu N  = \int dP V\] Area under the curve.
+
+
+\[ V = \left (\frac{\partial G}{\partial P} \right )_{T,N} \] 
+At $ C,G $ there are two phases that coexists: $ V_C $ and $ V_G $
+Since $ V_C $ is bigger than $ V_G $, so $ V_C $ describes a gas phase and $ V_C $ describes a liquid phase.
+
+\textbf{insert Fig.8 and 9} 
+\[ \rho _C = \frac{N}{V_C}, \quad \rho_G = \frac{N}{V_G} \] 
+
+\subsection{Phases}
+C-phase: $ V_C $ volume fraction $ \frac{V_C}{V} = X_C $ 
+G-phase: $ V_G $ volume fraction $ \frac{V_G}{V} = X_G $ 
+\[ \implies V_C + V_G = V \implies X_C + X_G = 1 \] 
+Total number of particles:
+\[ N = V_C \rho_C^{*} + V_G \rho_G^{*} \] 
+\[ \frac{N}{V} = X_C \rho_{C}^{*} + X_G \rho_{G}^{*}   \] 
+Set $ X_G = 1 - X_C, $ $ \frac{N}{V} $ 
+\[ \rho = X_C \rho_C^{*} + (1-X_C) \rho_{G}^{*}  \] 
+\[ X_C = \frac{\rho - \rho_{G}^{*} }{\rho_{C}^{*} - \rho_{G}^{*} }, \quad X_G = 1 - X_C\] 
+
+\textbf{insert Fig.10} 
+From Helmholtz Free energy, $ T < T_C $ 
+
+\textbf{insert Fig.11} 
+\[ P = - \left (\frac{\partial F}{\partial V} \right )_{T,N} \] 
+
+\textbf{insert Fig.12} 
+\subsection{Clausius-Clapeyron}
+Assume extensivity $ \implies $ Gibbs-Duhem relation
+\[ d\mu = -\frac{S}{N}dT + \frac{V}{N}dP = -sdT + \frac{1}{n}dP \] 
+where $ s \equiv \frac{S}{N}, \quad n \equiv \frac{N}{V} $ 
+
+Liquid
+\[ \mu_2^{l} - \mu_1^{l} = -s(T_2^{l}-T_1^{l}) + \frac{1}{n^{l}}(P_2^{l}-P_1^{l})\] 
+Gas
+\[ \mu_2^{l} - \mu_1^{l} = -s(T_2^{l}-T_1^{l}) + \frac{1}{n^{l}}(P_2^{l}-P_1^{l})\] 
+$ l $ stands for liquid
+On the ceexistence line in equilibrium:
+\[ \mu_1^{l} = \mu_1^{g} \] same with all other variables.
+Subtract the eqs:
+\[ 0 = (s^{g}-s^{l})(T_2 - T_1) + \left( \frac{1}{n^{l}} - \frac{1}{n^{g}} \right)(P_2-P_1)  \] 
+\[ \implies \frac{P_2-P_1}{T_2-T_1} = \frac{s^{g} - s^{l}}{T_2-T_1} = \frac{s^{g}-s^{l}}{\frac{1}{n^{g}} - \frac{1}{n^{l}}} \] 
+\[ \implies \left (\frac{\partial P}{\partial T} \right )_{\text{alone coexistence}} = \frac{(s^{g}-s^{l})}{ \frac{1}{n^{g}} - \frac{1}{n^{l}}}\] 
+\section{More particle types: Gibbs Phase rule}
+\[ dU = TdS -PdV + \sum_{i=1}^{K} \mu_i dN_i\] 
+There are $ 2+K $ independent variable.
+Extensive:
+\[ U = TS-PV+\sum_{i=1}^{k} \mu_i N_i \] 
+Gibbs-Duhem:
+\[ d\mu = -\frac{S}{N} dT + \frac{V}{N}dP + \sum_{i=1}^{k}N_i d\mu_i \] 
+If we have $ \phi $ phases, then there is a Gibbs-Duhem rel. for each phase.
+
+
+\end{document}
