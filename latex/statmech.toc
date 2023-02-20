@@ -1,0 +1,44 @@
+\contentsline {section}{\numberline {1}Thermodynamics (TD)}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Postulates of TD}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}TD laws}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Small Changes: Inexact and exact differentials}{5}{section.2}%
+\contentsline {subsubsection}{\numberline {2.0.1}Work}{6}{subsubsection.2.0.1}%
+\contentsline {subsubsection}{\numberline {2.0.2}Heat}{7}{subsubsection.2.0.2}%
+\contentsline {subsubsection}{\numberline {2.0.3}Conservation of energy}{7}{subsubsection.2.0.3}%
+\contentsline {subsection}{\numberline {2.1}TD Processes}{8}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Quasistatic process}{8}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Heat Engines}{8}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Fridge and Air conditioners}{9}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Heat Pumps}{9}{subsubsection.2.1.4}%
+\contentsline {section}{\numberline {3}TD Potentials}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Legendre Transform}{10}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Helmholtz free energy}{11}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Enthalpy}{11}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Gibbs free energy}{12}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Summary}{12}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Extensivity}{12}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Gibbs-Duhem relation}{13}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}TD Potentials and Extensivity}{13}{subsection.4.2}%
+\contentsline {section}{\numberline {5}TD identities}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Standard Quantities}{14}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Maxwell Relations}{15}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Manipulating partial derivatives as Jacobians}{15}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Connection to partial derivatives}{15}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Extrema Principles}{18}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Helmholtz Free Energy F}{19}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Exergy}{19}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Stability Conditions}{21}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Composite system}{21}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Heat Transfer}{22}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Volume Exchange for Helmholtz Free Energy}{22}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Heat Exchange for Enthalpy}{22}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}What about intensive variables?}{23}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Van der Waal's gas}{23}{subsection.8.6}%
+\contentsline {subsection}{\numberline {8.7}Phases}{27}{subsection.8.7}%
+\contentsline {subsection}{\numberline {8.8}Clausius-Clapeyron}{27}{subsection.8.8}%
+\contentsline {section}{\numberline {9}More particle types: Gibbs Phase Rule}{28}{section.9}%
+\contentsline {section}{\numberline {10}3. Law of TD}{29}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Consequences}{29}{subsection.10.1}%
+\contentsline {section}{\numberline {11}Statistical Mechanics}{30}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Binomial Distribution}{30}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Random Independent Variables}{32}{subsection.11.2}%

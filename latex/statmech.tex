@@ -23,7 +23,6 @@
 \usepackage{tikz} 
 \graphicspath{{./images/}}
 
-
 \newlength{\tabcont}
 \setlength{\parindent}{0.0in}
 \setlength{\parskip}{0.05in}
@@ -39,12 +38,14 @@
 
 \newtheorem{defn}{Definition}[section]
 \newtheorem{exm}{Example}[section]
+\newtheorem{example}{Example}[section]
 
 \begin{document}
 \setcounter{section}{0}
 \title{Statistical Mechanics}
 \maketitle
 
+\tableofcontents
 \section{Thermodynamics (TD)}
 
 \begin{itemize}
@@ -829,8 +830,8 @@ The number of \textbf{free variables} at coexistence determines the dimension of
 
 \begin{example}[K=1]
 	\[ F = 3 - \phi \] 
-	$ \phi=2 $ (Two phases coexist) \implies $F=1$ (line)
-	$ \phi=3 $ (Three phases coexist) \implies $ F=0 $ (point)
+	$ \phi=2 $ (Two phases coexist) $\implies F=1$ (line)
+	$ \phi=3 $ (Three phases coexist) $\implies  F=0 $ (point)
 	$ \phi=4 $ cannot coexist.  
 \end{example}
 
@@ -858,5 +859,81 @@ Also the thermal expansion coefficient:
 \[ -SdT + V dP. \] 
 If $ S $ goes to a pressure independent const. at $ T \to 0 $. Then $ \alpha=0 $.
 
-Next week we'll start stat mech!!
+
+\newpage
+\section{Statistical Mechanics}
+\subsection{Binomial Distribution}
+Probability distribution for flipping coins:
+1 coin: \[ 1:1 \] 
+2 coins: \[ 1:2:1 \] 
+3 coins: \[ 1:3:3:1 \] 
+
+Mean value, increases width increases, maximum (probability) decreases.
+\[ P(N_{\uparrow}) = \frac{1}{2}^{\uparrow} \frac{1}{2}^{\downarrow} = \frac{N!}{N^{\uparrow}! (N-N^{\uparrow})!} \frac{1}{2}^{N}\] 
+What is the characteristic of this distribution when $ N $ is large. We need $ N! $ for $ N $ large
+\[ N! = \int_0^{\infty} dx \: x^{N} e^{-x} = \left( -x^{N}e^{-x} |_0^{\infty} + N \int_0^{\infty} dx x^{N-1}e^{-x} \quad \text{and so on}\right) \] 
+\textbf{Factorial Expansion} 
+\begin{equation}
+	N! = \int_0^{\infty} dx e^{-x+Nln(X)}
+\end{equation}
+Use Laplace's method. For $ N $ large Approximate the integrand by its value close to the maximum of the exponent.
+Set \[ g(x) = Nln(x)-x \] 
+\[ \left( \frac{\partial g}{\partial x} \right) = \frac{N}{x}-1 = 0  \implies X_0 = N\] 
+\[ 2\left( \frac{\partial g}{\partial x} \right) = -\frac{N}{x^2} |_{x=x_0} = -\frac{1}{N} < 0 \implies x_0 \text{is a max.}   \] 
+\[ g(x) \approx g(x_0) + \left( \frac{\partial g}{\partial x} \right)_{x_0}(x-x_0) + \frac{1}{2} 2\left( \frac{\partial g}{\partial x} \right)_{x=x_0}(x-x_0)^2   \] 
+\[ \implies N! = \int_{{0}}^{{\infty}} {dx} {e^{Nln(N)-N- \frac{1}{2N} (x-N)^2}} \] 
+\[ = e^{Nln(N)-N} \int_0^{\infty} e^{- \frac{1}{2N}(x-N)^2} \] 
+For $ N >> \sqrt(N) \text{width of the Gaussian} $ we can extend the lower limit to $ -\infty $ since it's so small.
+\[ \implies e^{Nln(N)-N} \int_{-\infty}^{\infty} dx e^{- \frac{1}{2N}x^2} \] 
+\[ = e^{Nln(N)-N} \sqrt{2\pi N} \] 
+
+\begin{shaded*}	
+	\textbf{Stirling Approximation} 
+\begin{equation}
+	ln(N!) = Nln(N)-N + \frac{1}{2}ln(2\pi N)
+\end{equation}
+The last term is often dropped when $ N >> \sqrt{N} $ 
+\end{shaded*}
+
+\[ ln(P(N_{\uparrow})) = ln(N_{\downarrow}) - ln(N_{\uparrow}) - ln\left( (N-N_{\uparrow})! \right)+ N_{\uparrow}ln(P) + (N - N_{\uparrow})ln(1-p) \] 
+\[ = Nln(N) - N  - (N_\uparrow ln(N_{\uparrow}) - N_\uparrow) - \left( (N-N_\uparrow) ln(N-N_\uparrow) - (N-N_\uparrow) \right) + N_\uparrow ln(P) + (N -N_{\uparrow}) ln(1-P)\] 
+\[ = Nln(N) -N_{\uparrow} ln(N_\uparrow) - (N-N_\uparrow)ln(N-N_\uparrow) + N_\uparrow ln (\frac{P}{1-p}) + Nln(1-P)\] 
+
+\textbf{Maximum:} 
+\[ \left( \frac{\partial }{\partial N_\uparrow} \right) ln[P(N_\uparrow)] \implies 
+- ln(N_\uparrow)- \frac{N_\uparrow}{N_\uparrow} + ln(N-N_\uparrow) + 1 + ln(\frac{p}{1-p}) = 0\] 
+
+\[ \implies ln(\frac{p}{1-p}) = ln(\frac{N_\uparrow}{N-N_\uparrow}) = ln\left( \frac{N_\uparrow/N}{1 - N_\uparrow /N} \right) \] 
+\[ \implies P = \frac{N_\uparrow}{N} \] 
+\[ \implies N_\uparrow^{max} = NP \] 
+\textbf{Location of the max $P$ is $ NP $. } 
+Second derivative:
+\[ \left( \frac{\partial^2 ln(P)}{\partial N_\uparrow^2} \right)  = -\frac{1}{N_\uparrow} - \frac{1}{N-N_\uparrow}\] 
+\[ = -\frac{1}{N}(\frac{1}{N_\uparrow/N} + \frac{1}{1-N_\uparrow/N}) = -\frac{1}{N}\left( \frac{1}{(N_\uparrow/N)(1-N_\uparrow/N)} \right) \] 
+\[ =^{at max \frac{N_\uparrow}{N} = p} = -\frac{1}{N}\frac{1}{p(1-p)}\] 
+
+\[ ln(P_N)|_{\text{at max}} = NlnN -Np(lnN+lnP) -N(1-p)(ln(N)+ln(1-P)) + NPln(1-p) + Nln(1-p) = 0\] 
+
+\[ ln[P(N_\uparrow)]  = 0 + \underbrace{0}_{\text{first der.}} - \frac{1}{2(Np(1-P))} (N_\uparrow - NP)^2\] 
+\[ P(N_\uparrow) \approx {\color{red} A } e^{-\frac{1}{2N(1-p)}(N_\uparrow-NP)^2} \] 
+where {\color{red} A} is the missing normalisation constant. \\
+\textbf{Gaussian around $ NP \propto N $ and standard derivative $ \sqrt{NP(1-P)} \propto \sqrt{N} $ } \\
+The height is $ \frac{1}{\sqrt{N}} $. \\
+If we focus on the fraction of coins being head,
+\[ \left \langle \frac{N_\uparrow}{N} \rangle \right> = p\] 
+\[ \left \langle \left(  \frac{N_\uparrow}{N}^2 \right ) \right \rangle - \left \langle \frac{N_\uparrow}{N} \right \rangle^2 = \frac{1}{N^2} NP(1-P) \propto \frac{1}{N}\] 
+the mean value becomes a precise statment as $ N \to \infty $ 
+\subsection{Random Independent Variables}
+We define a random variable $ F $ that takes $ 2 $ values \\
+1 with Probability $ p $ 
+0 with probability $ 1-p $ 
+Then take $ N $ such random variables $ F_i \quad i = 1 \cdots N $ then
+\[ N_\uparrow = \sum_{i=1}^{N} F_i \] 
+The average value of $ F_i $ is 
+\[ \left \langle F_i \rangle \right> = 1p + 0(1-p)  = p\] 
+	\[ \left \langle N_\uparrow \right \rangle = \left \langle \sum_{i=1}^{N}F_i \right \rangle= \sum_{i=1}^{N} \left \langle F_i \right \rangle = NP\] 
+Deviation from the average:
+\[ \left \langle (N_\uparrow -NP)^2 \right \rangle = \left \langle N_\uparrow^2 \right \rangle - 2NP \left \langle N_\uparrow \right \rangle + (NP)^2\]
+		\[ \left \langle N_\uparrow^2 \right \rangle= \left \langle \left( \sum_{i=1}^{N} F_i \right)^2  \right \rangle= \left \langle \sum_{i=1}^{N}F_i \sum_{j=1}^{{N}} F_j\right \rangle = \left \langle \sum_{n=0}^{N} F_i^2 + \sum_{i,j} F_i F_j\right \rangle\] 
+\[ = \sum_{i=1}^{N} \left \langle F_i^2 \right \rangle + \sum_{i\neq j} \left \langle F_i F_j \right \rangle \] 
 \end{document}
