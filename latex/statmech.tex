@@ -3,6 +3,7 @@
 \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
 \usepackage{multirow,booktabs}
 \usepackage{titlesec}
+\usepackage[Conny]{fncychap}
 \usepackage[table]{xcolor}
 \usepackage{fullpage}
 \usepackage{lastpage}
@@ -18,6 +19,8 @@
 \usepackage[margin=3cm]{geometry}
 \usepackage{braket}
 \usepackage[T1]{fontenc}
+\usepackage{pbsi}
+
 \usepackage{hyperref}
 \usepackage{graphicx}   
 \usepackage{geometry}
@@ -42,9 +45,44 @@
 \newtheorem{example}{Example}[section]
 \newtheorem{remark}{Remark}[section]
 
+
+% FANCY TITLE PAGE
+\providecommand{\HUGE}{\Huge}% if not using memoir
+\newlength{\drop}% for my convenience
+%% specify the Webomints family
+%% select a (FontSite) font by its font family ID
+\newcommand*{\FSfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+%% if you don’t have the FontSite fonts either \renewcommand*{\FSfont}[1]{}
+%% or use your own choice of family.
+%% select a (TeX Font) font by its font family ID
+\newcommand*{\TXfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+%% Generic publisher’s logo
+\newcommand*{\plogo}{\fbox{$\mathcal{PL}$}}
+
+\newcommand*{\titlePP}{\begingroup% Printing Poetry
+\drop=0.1\textheight
+\vspace*{\drop}
+\begin{raggedleft}
+{Some Lecture Notes for}\\[1.1\baselineskip]
+{\bsifamily \HUGE Statistical Mechanics}\\[\baselineskip]
+\FSfont{cmr}
+{\Large By Moyasui}\par
+\end{raggedleft}
+\vfill
+\begin{center}
+\FSfont{cmr}
+{\large Spring, 2023}
+\end{center}
+\vspace*{\drop}
+\endgroup}
+% FANCY TITLE END
+
 \begin{document}
+\pagestyle{empty}
+\titlePP
 \title{Statistical Mechanics}
-\maketitle
+\author{Moyasui}
+%\maketitle
 
 \tableofcontents
 \chapter{Thermodynamics (TD)}
@@ -1065,5 +1103,5 @@ Instead of considering the microstates at different times, evolving from a parti
 
 \textbf{Ensemble average}
 
-\[ \left \langle   O \right \rangle_E = \frac{1}{\Omega(E)} \frac{1}{N!h^{3N}}\int D\mathbb{P} D \mathbb{Q} \delta(E-H(P,Q))O(P,Q)\] 
+\[ \left \langle   O \right \rangle_E = \frac{1}{\Omega(E)} \frac{1}{N!h^{3N}}\int D\mathbb{P} D \mathbb{Q} \delta(E-H(\mathbb{P},\mathbb{Q}))O(\mathbb{P},\mathbb{Q})\] 
 \end{document}
