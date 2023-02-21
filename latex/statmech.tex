@@ -1,7 +1,8 @@
-\documentclass[11pt]{article}
+\documentclass[11pt]{book}
 \usepackage[utf8]{inputenc}	% Para caracteres en español
 \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
 \usepackage{multirow,booktabs}
+\usepackage{titlesec}
 \usepackage[table]{xcolor}
 \usepackage{fullpage}
 \usepackage{lastpage}
@@ -39,14 +40,15 @@
 \newtheorem{defn}{Definition}[section]
 \newtheorem{exm}{Example}[section]
 \newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
 
 \begin{document}
-\setcounter{section}{0}
 \title{Statistical Mechanics}
 \maketitle
 
 \tableofcontents
-\section{Thermodynamics (TD)}
+\chapter{Thermodynamics (TD)}
+\section{Postulates and Laws}
 
 \begin{itemize}
 	\item TD is motivated by applications: steam engines
@@ -861,7 +863,8 @@ If $ S $ goes to a pressure independent const. at $ T \to 0 $. Then $ \alpha=0 $
 
 
 \newpage
-\section{Statistical Mechanics}
+\chapter{Statistical Mechanics}
+\section{Behaviour for Large N}
 \subsection{Binomial Distribution}
 Probability distribution for flipping coins:
 1 coin: \[ 1:1 \] 
@@ -925,15 +928,142 @@ If we focus on the fraction of coins being head,
 the mean value becomes a precise statment as $ N \to \infty $ 
 \subsection{Random Independent Variables}
 We define a random variable $ F $ that takes $ 2 $ values \\
-1 with Probability $ p $ 
-0 with probability $ 1-p $ 
+1 with Probability $ P $ 
+0 with probability $ 1-P $ 
 Then take $ N $ such random variables $ F_i \quad i = 1 \cdots N $ then
 \[ N_\uparrow = \sum_{i=1}^{N} F_i \] 
 The average value of $ F_i $ is 
-\[ \left \langle F_i \rangle \right> = 1p + 0(1-p)  = p\] 
+\[ \left \langle F_i \rangle \right> = 1P + 0(1-P)  = P\] 
 	\[ \left \langle N_\uparrow \right \rangle = \left \langle \sum_{i=1}^{N}F_i \right \rangle= \sum_{i=1}^{N} \left \langle F_i \right \rangle = NP\] 
 Deviation from the average:
 \[ \left \langle (N_\uparrow -NP)^2 \right \rangle = \left \langle N_\uparrow^2 \right \rangle - 2NP \left \langle N_\uparrow \right \rangle + (NP)^2\]
 		\[ \left \langle N_\uparrow^2 \right \rangle= \left \langle \left( \sum_{i=1}^{N} F_i \right)^2  \right \rangle= \left \langle \sum_{i=1}^{N}F_i \sum_{j=1}^{{N}} F_j\right \rangle = \left \langle \sum_{n=0}^{N} F_i^2 + \sum_{i,j} F_i F_j\right \rangle\] 
 \[ = \sum_{i=1}^{N} \left \langle F_i^2 \right \rangle + \sum_{i\neq j} \left \langle F_i F_j \right \rangle \] 
+\[ = \frac{1}{N^2}NP(1-P) \] 
+
+\section{Boltzmann Configurational Entropy}
+
+\begin{figure}[htpb]
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+	\pgfmathsetmacro{\cubex}{2}
+\pgfmathsetmacro{\cubey}{2}
+\pgfmathsetmacro{\cubez}{2}
+\draw[red,fill=yellow] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,-\cubey,0) -- ++(\cubex,0,0) -- cycle;
+\draw[red,fill=yellow] (0,0,0) -- ++(0,0,-\cubez) -- ++(0,-\cubey,0) -- ++(0,0,\cubez) -- cycle;
+\draw[red,fill=yellow] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,0,-\cubez) -- ++(\cubex,0,0) -- cycle;
+\end{tikzpicture}
+\end{center}
+\caption{A 3D box with $ V = L^3 $ with $ N $ identical particles, labelled by their $ x $-cordinates }%
+\label{fig:box}
+\end{figure}
+"The number of microstates $ \propto L^3$ "\\
+Since $ x_1 $ has to be in the left of $ x_2 $ and same for the other particles:
+\[ \text{\# of microstates}  = \int_0^{L} dx_N L^2 \cdots \int_{0}^{x_3} dx_2 L^2 \int_{0}^{x_2} dx_1 L^2 \] 
+\[ = L^{2N} \int_{0}^{L} dx_N \int_{0}^{x_N} dx_{N-1}  ... \int_0^{x_3}dx^2 \int_{0}^{x_2}dx_1  \] 
+Integrating from the right hand side we see a pattern: 
+\[ x_2 \rightarrow \frac{x_3^2}{2!} \rightarrow \frac{x_4^3}{3!} \cdots \] 
+\[ = L^{2N} \frac{L^{N}}{N!} = \frac{V^{N}}{N!} \] 
+This is the same result as gotten with first labelling particles and then divide by all permutations of labels.
+
+\begin{figure}[htpb]
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+\pgfmathsetmacro{\cubex}{1}
+\pgfmathsetmacro{\cubey}{2}
+\pgfmathsetmacro{\cubez}{1}
+\draw[red,fill=yellow] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,-\cubey,0) -- ++(\cubex,0,0) -- cycle;
+\draw[red,fill=yellow] (0,0,0) -- ++(0,0,-\cubez) -- ++(0,-\cubey,0) -- ++(0,0,\cubez) -- cycle;
+\draw[red,fill=yellow] (0,0,0) -- ++(-\cubex,0,0) -- ++(0,0,-\cubez) -- ++(\cubex,0,0) -- cycle;
+\pgfmathsetmacro{\cubex}{1}
+\pgfmathsetmacro{\cubey}{2}
+\pgfmathsetmacro{\cubez}{1}
+\draw[red,fill=yellow] (1,0,0) -- ++(-\cubex,0,0) -- ++(0,-\cubey,0) -- ++(\cubex,0,0) -- cycle;
+\draw[red,fill=yellow] (1,0,0) -- ++(0,0,-\cubez) -- ++(0,-\cubey,0) -- ++(0,0,\cubez) -- cycle;
+\draw[red,fill=yellow] (1,0,0) -- ++(-\cubex,0,0) -- ++(0,0,-\cubez) -- ++(\cubex,0,0) -- cycle;
+\end{tikzpicture}
+\end{center}
+\caption{2 boxes.}%
+\label{fig:}
+\end{figure}
+
+Assuming all the microstates are equally probable.
+\[ P(N_A, N_B) = \frac{ \frac{V_A^{N_A}}{N_A!} \frac{V_B^{N_B}}{N_B!} } {\frac{V^{N}}{N!}}\] 
+\[ = \frac{N!}{N_A!N_B!} \left( \frac{V_A}{V} \right) ^{N_A} \left( \frac{V_B}{N_B} \right)^{N_B}  \] 
+(Binomial distribution)
+Boltzmann: All microstates (position here) are equally likely. The most likely macrostate (value of $ N_A, N_B $ is the one that corresponds to most microstates: i.e. the max of $P(N_A, N_B))$. \\
+
+The maximum of $ P(N_A,N_B) $ also corresponds to the maximum of
+\begin{equation}
+	\label{eq:bce}
+	 k_Bln\left( P(N_A,N_B) \frac{V^N}{N!} e^{XN} \right)  
+ \end{equation}
+\textbf{ $ S_B $ Boltzmann Configuration Entropy } 
+Boltzmann never actually wrote this.
+
+Equation~\ref{eq:bce} can also be written as
+\[ kln((\frac{V_A^{N_A}}{N_A!}) e^{xN_A} \frac{V_B^{N_B}}{N_B!} e^{xN_B}) \] 
+
+\textbf{\textit{The other words, the impossibility of an uncompensated decrease of entropy seems to be reduced to an improbability. (Boltzmann,1898)}}
+
+Set $ \Omega \equiv \frac{V^{N}}{N!} $ 
+In equilibrium:
+\[ S_B = \underbrace{kln(P_{max} \Omega e^{xN})}_{klnP_{max}+kln(\Omega e^{xN})} = kln( \Omega_A  e^{xN_A}) + kln(\Omega_B e^{xN_B})\] 
+
+\[ LHS = kln(\Omega e^{XN}), \]
+Note that this has the same form as the right hand side! \\
+So in the TD equilibrium,
+\begin{equation}
+	S = kln(\Omega e^{XN}) = kln(\Omega) + kXN
+\end{equation}
+This is additive  over its subsystems.
+\[ S = S_A + S_B \] 
+\begin{equation}
+	\Omega = \frac{V^{N}}{N!} = \frac{ \int d^3 q_1 \cdots \int d^3 q_n }{N!}
+\end{equation}
+
+To generalise to also include momenta and pick only those configurations that have a total energy $ E $.
+
+\[ \Omega(E) \delta E \] $ \delta E $ is a thin energy shell
+\[ \frac{1}{N! h^{3N}}= \int d^q 1_1 \cdots \int d_3 q_N \int d^p 1_1 \cdots  \int d^3 p_N\] 
+the $ h^{3N} $ can be interpreted as the $ x $ from before, the reference volume phase space.It's a related to the uncertainty, and it's a choice.
+
+\begin{remark}
+	\[ ln(h^{3N} = Nln(h^{3}) \] 
+\end{remark}
+
+\begin{equation}
+	\Omega(E)\delta E = \frac{1}{N!h^{3^{N}}} \int d^3 q_1 \cdots d^3 q_N (\Theta(E+\delta E -H(q_1, \cdots, p_N) ) -\Theta (E-H(q_1 \cdots p_N))) 
+\end{equation}
+where the $ \Theta (x) $ is the Heaviside step function.
+Expand for small $ \delta E $ 
+\[ = \delta E \frac{1}{N!h^{3N}} \int d^3 q_1 \cdots d^3 q_N \delta (E- H(q_1 \cdots p_N)) \] 
+
+\begin{shaded*}
+\begin{equation}
+	\Omega(E) = \frac{1}{N!h^{3N}} \int d^3 q_1 \cdots d^3 q_N \delta (E- H(q_1 \cdots p_N)) 
+\end{equation}
+\textbf{This is the microcanonical ensemble. (All microstates have the same energy.)} 
+\end{shaded*}
+
+\section{Equilibrium Stat Mech and Ensembles}
+After a time the system reaches equilibrium (when the macroscopic states is time independent and is independant of the initial condition.)
+Microscopic state changes all the time (also in equilibrium) \\
+Microscopic state: 
+$$ Q = \{q_{1x}, q_{1y}, q_{1z}, ... q_{Nz}\} $$
+\[ P = \{p_{1x}, p_{1y} ...\}\] 
+$ \{Q,P\} $ has 6N components.
+A microstate is a point in phase-space.
+\subsection{Conserved Quantities}
+In the approach to equilibrium, not all info about the initial state is lost. If collisions conserves energy, then (total) energy is conserved. \\
+Instead of considering the microstates at different times, evolving from a particular initial condition, we can consider the system at a particular time $ t $, coming from all possible initial conditions with the same energy.
+
+\[ \Omega(E) = \frac{1}{N!h^{3N}} \int D\mathbb{Q} D\mathbb{P} \delta(E - H(\mathbb{P} - \mathbb{Q}))\] 
+\begin{equation}
+	S = k_B ln(\Omega(E)\delta E)
+\end{equation}
+
+\textbf{Ensemble average}
+
+\[ \left \langle   O \right \rangle_E = \frac{1}{\Omega(E)} \frac{1}{N!h^{3N}}\int D\mathbb{P} D \mathbb{Q} \delta(E-H(P,Q))O(P,Q)\] 
 \end{document}
