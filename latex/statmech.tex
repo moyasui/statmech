@@ -1067,19 +1067,19 @@ To generalise to also include momenta and pick only those configurations that ha
 the $ h^{3N} $ can be interpreted as the $ x $ from before, the reference volume phase space.It's a related to the uncertainty, and it's a choice.
 
 \begin{remark}
-	\[ ln(h^{3N} = Nln(h^{3}) \] 
+	\[ ln(h^{3N}) = Nln(h^{3}) \] 
 \end{remark}
 
 \begin{equation}
-	\Omega(E)\delta E = \frac{1}{N!h^{3^{N}}} \int d^3 q_1 \cdots d^3 q_N (\Theta(E+\delta E -H(q_1, \cdots, p_N) ) -\Theta (E-H(q_1 \cdots p_N))) 
+	\Omega(E)\delta E = \frac{1}{N!h^{3^{N}}} \int d^3 q_1 \cdots d^3 p_N (\Theta(E+\delta E -H(q_1, \cdots, p_N) ) -\Theta (E-H(q_1 \cdots p_N))) 
 \end{equation}
 where the $ \Theta (x) $ is the Heaviside step function.
 Expand for small $ \delta E $ 
-\[ = \delta E \frac{1}{N!h^{3N}} \int d^3 q_1 \cdots d^3 q_N \delta (E- H(q_1 \cdots p_N)) \] 
+\[ = \delta E \frac{1}{N!h^{3N}} \int d^3 q_1 \cdots d^3 p_N \delta (E- H(q_1 \cdots p_N)) \] 
 
 \begin{shaded*}
 \begin{equation}
-	\Omega(E) = \frac{1}{N!h^{3N}} \int d^3 q_1 \cdots d^3 q_N \delta (E- H(q_1 \cdots p_N)) 
+	\Omega(E) = \frac{1}{N!h^{3N}} \int d^3 q_1 \cdots d^3 p_N \delta (E- H(q_1 \cdots p_N)) 
 \end{equation}
 \textbf{This is the microcanonical ensemble. (All microstates have the same energy.)} 
 \end{shaded*}
@@ -1104,4 +1104,160 @@ Instead of considering the microstates at different times, evolving from a parti
 \textbf{Ensemble average}
 
 \[ \left \langle   O \right \rangle_E = \frac{1}{\Omega(E)} \frac{1}{N!h^{3N}}\int D\mathbb{P} D \mathbb{Q} \delta(E-H(\mathbb{P},\mathbb{Q}))O(\mathbb{P},\mathbb{Q})\] 
+\pagebreak
+\section{Microcanoical Ensemble}
+Ideal gas and Maxwell-Boltzmann distribution.
+Microcanonical ensemble:
+\[ S = k_B ln(\Omega) \] 
+\[ \Omega = \Omega(E) \delta E  = \int \frac{1}{N!h^{3N}} \int d^3 q_1 \cdots d^3 p_N \: \delta (E- H(\mathbb{P}, \mathbb{Q})) \delta E \] 
+\textbf{Ideal Gas:} 
+\[ H = \sum_{n=1}^{N} \frac{\vec{p_i}^2}{2m}\] 
+All $ q $'s will be inside the box of volume $ V $.
+
+First the integrals over $ q $'s give $ V^{N} $ (They are independant of the positions, but need to be confined in the box.)
+\[ \Omega = \frac{V^{N}}{N!h^{3N}} \delta E \int d^3p_1 \cdots d^3 p_N \: \delta (E - \sum_{i=1}^{N} \frac{\vec{p_i}^2}{2m}) \equiv \frac{V^{N}}{N! h^{3N}} \delta E \] 
+Note that it's possible to take any momentum. \\
+Shift:
+\[ \vec{p_i}\prime = \frac{\vec{p_i}}{\sqrt{2m}} \]
+\[(2m)^{\frac{3N}{2}} \int d^3p_1 \prime \cdots d^3p_N \prime \delta (E - \sum_{i=1}^{N} \underbrace{\vec{p_i}^2)}_{3N terms}\] 
+Expanding these out and call them $ r^2 $
+\[ r^2 = p_1^{{x}^2} + p_1^{{y}^2} + p_1^{{z}^2} + ... + p_N^{{z}^2} \] 
+\begin{shaded*}
+Switch to hyperspherical coordinates in $ 3N $ dimensions.
+\[ I = (2m)^{\frac{3N}{2}} \int d \tilde \Omega^{3N-1} \int_0^{\infty} dr V^{3N-1} \delta (E-r^2)\] 
+\end{shaded*}
+
+Now use \[ \int dx f(x) \delta(g(x)) = \sum_{n} \frac{f(x)}{|g \prime (x)|} |_{x=x_n}\] 
+\begin{equation}
+	\label{eq:int-dr}
+	\int dr \: r^{3N-1} \delta (E - r^2)
+\end{equation} 
+\[ |g \prime (r)| = |-2r| = 2r \] 
+\textbf{Zeros of g: $ r = \pm \sqrt{E} $ } but only $ +\sqrt{E} $ is indside the integration range. \\
+Then
+\[ \int dr \: r^{3N-1} \delta (E - r^2) = \frac{E^{\frac{3N-1}{2}}}{2E^{1/2}} = \frac{E^{\frac{3N}{2}}}{2}\] 
+So
+\[ I = (2m)^{\frac{3N}{2}} \tilde \Omega^{3N-1} (2m)^{3N/2} \frac{E^{\frac{3N}{2}-1}}{2} \] 
+
+For the \textbf{Solid Angle} $ \tilde \Omega^{d-1} $ in $ d $ dimensions 
+We consider a Gaussian Integral and compute it in both hyperspherical and Cartesian coordinates.
+\[ I = \int d^{d} r e^{-r^2} = \int d \tilde \Omega^{d-1} \int_0^{\infty} r^{d-1} e^{-r^2} \] 
+Change variables:
+\[ t = r^2 \quad dt = 2r dr \]
+\[ I = \frac{1}{2} \: \tilde \Omega^{d-1} \underbrace{\int_0^{\infty} t^{\frac{d}{2}-1} e^{-t}}_{\Gamma(\frac{d}{2})}\]
+
+Then in Cartesian coordinates:
+\[ I = \int_0^{\infty} dx \cdots \int_{-\infty}^{\infty} e^{-x_1^2}e^{-x_2^2}\cdots e^{-x_d^{d}} = \pi^{\frac{d}{2}} \] 
+\begin{shaded*}
+\begin{equation}
+	\tilde \Omega^{{d-1}} = \frac{2 \pi \frac{d}{2}}{\Gamma(d/2)}
+\end{equation}
+\end{shaded*}
+\[ \Omega =  \frac{V^{N}}{N!h^{3N}} \delta E \tilde \Omega^{3N-1} (2m)^{\frac{3N}{2}} \frac{E^{\frac{3N}{2}-1}}{2} \] 
+where
+\[ \tilde \Omega^{3N-1} = \frac{2\pi^{\frac{3N}{2}}}{\Gamma{\frac{3N}{2}}}\] 
+\[ \Omega = \frac{V^{N}}{N!h^{3N}} \frac{(2 \pi m E )^{\frac{3N}{2}}}{\Gamma(\frac{3N}{2})} \frac{dE}{E}\] 
+Finally the entropy is
+\[ S = k_B ln(\Omega) = k_B ln(\left[ \frac{V(2 \pi m E)^{3/2}}{h^{3}} \right]^{N} \frac{dE}{N!\Gamma(3N/2)E} ) \] 
+Now use \[ X \Gamma(x) = \Gamma(x+1) \implies \Gamma(3N/2) = \frac{2}{3N}\Gamma(\frac{3N}{2}+1) \] 
+\[ S = k_B \left( ln\left[ \frac{V(2 \pi m E)^{3/2}}{h^{3}} \right]^{N} \right ) - k_B (NlnN-N) - k_B \left(\frac{3N}{2}ln \left(\frac{3N}{2}-\frac{3N}{2} \right) \right) - k_B ln \left(\frac{2E}{3N \delta E}\right)\] 
+where we ignore the last term since it doesn't scale with $ n $.
+\[ S = Nk_B \left[ ln \left(\frac{V}{N} \right) + \frac{3}{2} ln \left(\frac{E}{N} \right) + \frac{5}{2} + \frac{3}{2}ln\left( \frac{4\pi m}{3h^2} \right) \right ] \] 
+\begin{shaded*}
+The Sackur-Tetrode formular for entropy of ideal gas
+\begin{equation}
+	S = Nk_B \left( \frac{5}{2} - ln\left( \frac{N}{V} \underbrace{\left( \frac{h}{(\frac{4 \pi mE}{3N})^{\frac{1}{2}}} \right)^{\frac{1}{2}}}_{\lambda^{3}}  \right)^3  \right) 
+\end{equation}
+Expected to be valid physically when $ V >> N\lambda^3 $ 
+\end{shaded*}
+
+\pagebreak
+\section{Maxwell-Boltmann Distribution}
+\textbf{NOTATION: $ P \to $ Probability, $ p \to$ momentum  } \\
+The probability of one particle having a momentum in one direction being of magnitude $ p_1 $ when the total energy is $ E $.
+\[ P(p_1) = \frac{\text{Volume of phase-space where }p_{1x} = p_1 \text{ and the total energy is }E}{\text{Volume of phase-space with total energy} E}\] 
+\[ = \frac{\text{The surface area of a sphere in }3N-1 \text{dimensions with radius} \sqrt{E-\frac{p_i^2}{2m}}}{\text{surface area of a sphere in }3N \text{dimensions with radius }\sqrt{E}} \] 
+\[  = \frac{\pi ^{\frac{3N-1}{2}} (2m)^{\frac{3N-1}{2}} (E- \frac{p_i^2}{2m})^{(\frac{3N-1}{2}-1)} \Gamma(\frac{3N-1}{2})}{\pi ^{3N/2} (2m)^{3N/2} E^{3N/2 - 1} / \Gamma(3N/2)} \] 
+\[ \frac{\Gamma{3N/2}\left(1-\frac{p^2}{2mE}\right)^{\frac{3N}{2}-\frac{3}{2}}}{\Gamma{\frac{3N-1}{2}}\sqrt{\pi}\sqrt{2mE}} \] 
+In general $ \frac{p_i^2}{2mE} << 1 $
+\[ 1 - \frac{p_i^2}{2mE} \not \approx e^{-\frac{p_i^2}{2mE}} \] 
+\textbf{Stating the result without proof:} 
+\[ \frac{\Gamma(3N/2)}{\Gamma(\frac{3N-1}{2})} \overbrace{\approx}^{N-large} \left (\frac{3N}{2} \right)^{ \frac{1}{2} } \]
+To show this, use Stirling's formular and that the gamma function is factorial (somehow).
+
+\[ P(p_1) = e^{\frac{-\frac{P^2}{2mE}(\frac{3N}{2} - \frac{3}{2})}{\sqrt{2 \pi m E}} \frac{3N}{2}^{ \frac{1}{2} }} \] 
+\[  = \frac{1}{\sqrt{2 \pi \frac{2mE}{3N}}} e^{-\frac{p_i^2}{2\left( \frac{2mE}{3N} \right) }}\] 
+Gaussian with mean $ 0 $, $ \sigma^2 = \frac{2mE}{3N} $. \\
+For the ideal gas in TD:
+\[ E = \frac{3}{2}Nk_bT \] 
+\[ \sigma^2 = mk_BT \] 
+We can in fact define the temperature in statistical mechanics as the width of the momentum distribution and use that definition to establish the equality: \[ E = \frac{3}{2}Nk_BT \] 
+
+\section{Flow in Phase-space:Liouville theorem}
+\textbf{Ensemble:} Several copies of the same system but with different initial conditions.
+Insert phase space figure.
+A point in the phase space is one system, an ensemble is many dots in the phase space. \\
+Imagine so many copies of the system that on a course grained scale $ h_3N $, we can talk about a density of systems.
+\[ \rho(q_1, \cdots, p_N, t) \] 
+where $ \rho $ is the ensemble density. \\
+So the number of systems in the region around $ q_1 ... p_N $  at time $ t $ is 
+\[ \rho(\mathbb{Q}, \mathbb{P}, t) d\mathbb{Q} d\mathbb{P} \] 
+when time goes on, the system will change (points in phase-space is moving) and so the ensemble density can in principle change. \\
+Paths can't cross, but can merge, because from one point(initial condition) we can only have path. \\
+Newton's equations are continuous, so a system(the trajectory, point) moves continuously in phase-space. This means that it does not disappear or reappear suddenly in phase space.
+\subsection{Continuity Equation}
+``in = out''
+\[ \frac{\partial \rho}{\partial t}  = \vec{\nabla} \vec{j}  \] 
+\[ \vec{j} = \rho \vec{V} \] where $ V $ is the generalised velocity. 
+\[ \vec{V} = \left( \dot q_{1x} ... \dot p_{Nz} \right)  \] 
+Continuity equation in terms of components:
+\[ \frac{\partial \rho}{\partial t}  = \sum_{n=1}^{3N} \left( \frac{\partial (\rho \dot q_n)}{\partial q_n} + \frac{\partial (\rho \dot p_n)}{\partial p_n}  \right) \] 
+\[ - \sum_{n=1}^{3N} \left( \left( \frac{\partial \rho}{\partial  q_n} \right) \dot q_n  + \frac{\partial \rho}{\partial p_n} \dot p_n + \rho \underbrace{\left( \frac{\partial \dot q_n}{\partial q_n} + \frac{\partial \dot p_n}{\partial p_n}  \right)}_{0} \right)  \] 
+
+Hamilton eqs of motion:
+\[ \dot q_n = \left( \frac{\partial H}{\partial p} \right) \implies \left( \frac{\partial \dot q_n}{\partial q_n} \right) -  \left( \frac{\partial^2 H}{\partial q_n \partial p_n} \right) \] 
+using \[ \frac{\partial ^2J}{\partial q_n \partial p_n}  =  \frac{\partial ^2J}{\partial p_n \partial q_n} \] 
+
+\paragraph{How does the density change as we flow with the system?}
+\[ \frac{d}{dt} \: \rho(q_{1x}(t) \cdot p_{nz}(t), t) \]
+\[ = \frac{\partial \rho}{\partial t} + \sum_{n=1}^{3N} \frac{\partial \rho}{\partial q_n} \dot q_n + \frac{\partial \rho}{\partial p_n} \dot p_n\] 
+\[  = \frac{\partial \rho }{\partial t} - \frac{\partial \rho}{\partial t}   = 0\] 
+No local change in density following a Volume element. \\
+Flow in phase-space is as an incrompressible liquid (same volume different shape.) \\
+\[ \frac{\partial \rho}{\partial t}  = -\sum_{n=1}^{3N} \left( \frac{\partial \rho}{\partial q_n} \frac{\partial H}{\partial p_n} - \frac{\partial \rho}{\partial p_n} \frac{\partial H}{\partial q_n} \right) = -\{\rho, H\} \] 
+
+Recall $ \{\} $ is the Poisson bracket,
+\[ \{A,B\} = \sum_{n=0}^{3N} \frac{\partial A}{\partial q_n} \frac{\partial B}{\partial p_n} - \frac{\partial A}{\partial p_n} \frac{\partial B}{\partial q_n}  \] 
+which btw is the anticommutator in QM. \\
+
+In equilibrium we want $ \frac{\partial \rho}{\partial t} = 0 $ 
+\[ \{H, \rho\} = 0 \] 
+Now note that is $ \rho = \rho(H) $ 
+Then 
+\[ \{H, \rho(H)\} = \sum_{n=1}^{3N} \left( \frac{\partial H}{\partial q_n} \frac{\partial \rho}{\partial H} \frac{\partial H}{\partial p_n} - \frac{\partial H}{\partial p_n} \frac{\partial \rho}{\partial H} \frac{\partial H}{\partial q_n} \right) = 0  \] 
+That's the microcanonical ensemble (only depends on H)is constant in time.
+\[ \rho(\mathbb{P},\mathbb{Q}) = \frac{1}{N!h^{3N}} \rho(E - H(\mathbb{P},\mathbb{Q}))\] 
+More generally if there are more of motions $ c_1, c_2 $ so that $ \{H,C\} = 0 $ then 
+\[ \rho = \rho(H, \{c_1\}) \] will also have \[ \frac{\partial \rho}{\partial t} = 0  \] 
+\[ \{H, \rho(H, \{c_1\}) \} = \sum_{n=0}^{3N}\sum_{i} \left( \frac{\partial H}{\partial q_n} \frac{\partial c_i}{\partial p_n} \frac{\partial \rho}{\partial c_i} - \frac{\partial H}{\partial p_n}\frac{\partial c_i}{\partial q_n} \frac{\partial \rho}{\partial c_i}   \right)  \] 
+\[ \sum_{i} \{H, C_i\} \frac{\partial \rho}{\partial c_i} = 0 \implies \frac{\partial \rho}{\partial t} = 0 \] 
+\subsection{The Ergodic Hypothesis}
+With statistical ensembles $ \rho $ we can calculate ensemble averages:
+\[ \left \langle f \rangle \right> \] this is average over different copies of the same system with differential initial conditions. But experimentally we most often measure a single copy over some time
+	\[\bar f = \lim_{t \to \infty} \frac{1}{t_1-t_0} \int_{t_0}^{t_1} dt f(t) \] 
+It holds whenever "the trajectories of (almost every point phase space eventually passes arbitrarily close to every point on the surface of constant energy.)"
+Proving ergodicity is very hard and has done only for a few systems: Gas of hard spheres. \\
+\textbf{Ergodicity is very strict and in practice we might do well with} 
+\[ \langle f \rangle  = \bar f + \text{error} \] 
+\textbf{For certain systems $ \left \langle f \right \rangle \neq \bar f $ } 
+\begin{itemize}
+	\item Few-body problems: chaos
+	\item Integrable systems: Many-body systems with $ \infty $ number of conservation laws.
+	\item Broken symmetry phases.
+	\item Glasses, very slow dynamics.
+\end{itemize}
+
+
+
+
 \end{document}
