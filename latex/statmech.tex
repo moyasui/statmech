@@ -21,6 +21,11 @@
 \usepackage[T1]{fontenc}
 \usepackage{pbsi}
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
 \usepackage{hyperref}
 \usepackage{graphicx}   
 \usepackage{geometry}
@@ -1257,7 +1262,468 @@ Proving ergodicity is very hard and has done only for a few systems: Gas of hard
 	\item Glasses, very slow dynamics.
 \end{itemize}
 
+\section{Canonical Ensemble}
+Canonical: "the way to go".
+\begin{figure}[htpb]
+\begin{center}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\begin{tikzpicture}[scale = 0.7, line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-1.5699227372763418,-7.017420607886911) rectangle (16.273876599880758,6.1592995652360445);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (2,3) -- (2,0) -- (6,0) -- (6,3) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,5) -- (0,-3) -- (11,-3) -- (11,5) -- cycle;
+\draw [line width=2pt,color=zzttqq] (2,3)-- (2,0);
+\draw [line width=2pt,color=zzttqq] (2,0)-- (6,0);
+\draw [line width=2pt,color=zzttqq] (6,0)-- (6,3);
+\draw [line width=2pt,color=zzttqq] (6,3)-- (2,3);
+\draw [line width=2pt,color=zzttqq] (0,5)-- (0,-3);
+\draw [line width=2pt,color=zzttqq] (0,-3)-- (11,-3);
+\draw [line width=2pt,color=zzttqq] (11,-3)-- (11,5);
+\draw [line width=2pt,color=zzttqq] (11,5)-- (0,5);
+\draw (0.8725153585681783,4.588049580011229) node[anchor=north west] {Resevoir $E_R$};
+\draw (3.7038767180822076,2.503420886742662) node[anchor=north west] {\parbox{1.8711881106197015 cm}{System $$E$$}};
+\begin{scriptsize}
+\draw [fill=ududff] (2,3) circle (2.5pt);
+\draw[color=ududff] (2.117069802310609,3.335716670995411) node {$A$};
+\draw [fill=ududff] (2,0) circle (2.5pt);
+\draw[color=ududff] (2.117069802310609,0.33322907546680364) node {$B$};
+\draw [fill=ududff] (6,0) circle (2.5pt);
+\draw[color=ududff] (6.130757883379948,0.33322907546680364) node {$C$};
+\draw [fill=ududff] (6,3) circle (2.5pt);
+\draw[color=ududff] (6.130757883379948,3.335716670995411) node {$D$};
+\draw[color=zzttqq] (1.8059311913750014,1.686682033036694) node {$a$};
+\draw[color=zzttqq] (4.061686120658156,-0.05569418820270508) node {$b$};
+\draw[color=zzttqq] (6.301884119394532,1.686682033036694) node {$c$};
+\draw[color=zzttqq] (4.061686120658156,3.429058254276093) node {$d$};
+\draw [fill=ududff] (0,5) circle (2.5pt);
+\draw[color=ududff] (0.12578269232271994,5.327003780983295) node {$E$};
+\draw [fill=ududff] (0,-3) circle (2.5pt);
+\draw[color=ududff] (0.12578269232271994,-2.6692585200618035) node {$F$};
+\draw [fill=ududff] (11,-3) circle (2.5pt);
+\draw[color=ududff] (11.12453258889645,-2.6692585200618035) node {$G$};
+\draw [fill=ududff] (11,5) circle (2.5pt);
+\draw[color=ududff] (11.12453258889645,5.327003780983295) node {$H$};
+\draw[color=zzttqq] (-0.20091284915966812,1.188860255539723) node {$e$};
+\draw[color=zzttqq] (5.555151453149073,-3.058181783731312) node {$f$};
+\draw[color=zzttqq] (11.295658824911033,1.188860255539723) node {$g$};
+\draw[color=zzttqq] (5.555151453149073,5.435902294810758) node {$h$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+\caption{Heat can flow between the system and the resevoir. $ E $ is the system energy, $ E_R $ is the resevoir energy. The total energy $E + E_R$ is conserved.}
+\label{fig:0603-01}
+\end{figure}
+The probability density of the system having an energy $ E $ is the number of microstates of the system having energy $ E $ given the resevoir have $ E_T - E $ divided by the total number of microstates:
+\[ P(E) = \frac{\Omega(E)\Omega_R(E_T-E)}{\Omega_T(E_T)} \] 
+We'll take an approximation and assume that the resevoir is much larger than the system.
+\[ E_T >> E \] 
+Recall that energy is extensive, so this is proportional to the size of the system.
+\[ \ln(P(E)) - \ln(\Omega(E)) + \ln(\Omega(E_T-E))-\ln(\Omega_T(E_T))    \] 
+We expand: $ \ln(\Omega_R(E_T-E)) \approx \ln(\Omega_R(E_T)) - E \frac{\partial \ln((\Omega_R(E_R))) }{\partial E_R} \vert_{E_R=E_T, N,V} $ 
+\[ \frac{\partial S_R}{k_B\partial E_R} \vert{E_R=E_T} \approx \frac{1}{k_BT_R} \underbrace{=}_{\text{in equilibrium}} \equiv \beta\] 
+\[ \ln(P(E)) = \ln(\Omega(E)) - \beta E + \underbrace{\ln(\Omega_R(E_T)) - \ln(\Omega_T(E_T))}_{\text{Independent of} E - ln(Z)} \] 
+Exponentiate and we have
+\begin{shaded}
+	\[ P(E) = \frac{\Omega(E)e^{-\beta E}}{Z} \] 
+	This is the canonical probability distribution. \\
+	$ \frac{e^{-\beta E}}{Z} $ is known as the Boltzmann factor.
+\end{shaded}
+
+\[ 1 = \int dE P(E) \] 
+\[ \implies Z = \int dE \Omega(E) e^{-\beta E} \] 
+From microcanonical ensemble: \[ \Omega(E) = \int D\mathbb{P}D\mathbb{Q} \frac{1}{Nh^{3N}} \delta(E-H(\mathbb{P},\mathbb{Q})) \] 
+\[ 1 = \int dE P(E) = \int dE \int D\mathbb{P}D\mathbb{Q} \frac{1}{ZNh^{3N}}\delta(E-H)e^{-\beta E}  \] 
+\[ = \int D\mathbb{P}D\mathbb{Q} \underbrace{e^{-\beta H(\mathbb{P},\mathbb{Q})} \frac{1}{ZNh^{3N}}}_{\text{Probability density of a certain phase space coordinates, } \mathbb{P},\mathbb{Q} }  \] 
+\begin{shaded*}
+\[ Z = \int  \frac{D\mathbb{P}D\mathbb{Q}}{Nh^{3N}} e^{-\beta H(\mathbb{P},\mathbb{Q})}  \] 
+As we know, $ Z $ is nothing but the partition function (but really, just a normalisation constant.)
+\end{shaded*}
+\subsection{Characteristics of $ P(E) $ for ideal gas}
+\[ S = k_B\ln(\Omega(E)) = k_B(\ln(\frac{E}{N})^{3N/2} + ...(\text{volume and N dependant parts} )  )  \]
+\[ \implies \Omega(E) \propto E^{f} \] 
+\[ \ln((P(E))) = \ln(\Omega(E) - \beta EE - \ln(Z) )  \] 
+\[ \ln(P(E)) = \ln(E^{f}) -\beta E - \ln(Z)  \] 
+The max of $ P(E) $ 
+\[ \frac{\partial }{\partial E} \ln(P(E)) = \frac{f}{E} - \beta = 0 \implies E_{\max} = \frac{f}{\beta} \] 
+\[ \frac{\partial ^2}{\partial E^2} \ln(P(E)) = - \frac{f}{E^2} < 0 \] 
+since both $ f $ and $ E^2 $ are positive. 
+\[ \ln(P(E)) = \ln(P(E_{\max})) + \frac{1}{2!} \left( - \frac{f}{E_{\max}^2} \right)(E-E_{\max})^2  \] 
+\[ P(E) = P(E_{\max}) e^{-\frac{(E-E_{\max})^2}{2E_{\max}^2/f}}\] 
+
+In equilibrium:$ E_{eq} = E_{\max} $ 
+\[ \underbrace{\ln(P(E_{eq}))}_{P(E_{\max}) \propto \frac{1}{\sqrt{N}}} = \underbrace{\ln(\Omega(E_{eq}))}_{\frac{S_{eq}}{k_B} \propto N} - \underbrace{\beta E_{eq}}_{\propto N}  - \ln(Z)  \] 
+\[ \approx \ln(Z) = - \beta \left( E_{eq} - TS_{eq}\right)  \] 
+\subsection{A More General Case}
+For the microcanonical ensemble: $ \Omega(E,V,N) = \int \frac{DPDQ}{N!h^{3N}} \delta(E-H(\mathbb{P},\mathbb{Q}))$ where $ \Omega \equiv Z $ 
+Canonical ensemble: Laplace transform of the microcannonical ensemble w.r.t $ E $:
+\[ Z(T,V,N) := \int_{{0}}^{{\infty}} d{E} \: {Z(E,V,N)} e^{\beta E}\] 
+\[ = \int \frac{DPDQ}{N!h^{3N}} e^{\beta H}\] 
+On the other hand
+\[ Z(E,V,N) = \Omega(E,V,N) = e^{\frac{1}{k_B}S(E,V,N)} \] 
+\[ \implies Z(T,V,N) = \int_0^{\infty} dE e^{-\beta \underbrace{(E-TS(E,V,N))}_{F(T,V,N,E)}}\] 
+We will approximate the integral using Laplace's method. Expanding the integrand around its max. (Which is equivalent to expanding F aorund its min.)
+\[ F = E-TS(E,V,N) \] 
+\[ \left( \frac{\partial F}{\partial E} \right) = 1 - T \left( \frac{\partial S}{\partial E} \right)_{V,N} = 0 \implies \left( \frac{\partial S}{\partial E} \right)_{V,N} = \frac{1}{T}  \] 
+Where the equation after the implies sign determines $ E_{\min} $ 
+\[ \left( \frac{\partial ^2F}{\partial E^2} \right) = - T \left( \frac{\partial ^2S}{\partial E^2} \right) = -T \frac{\partial }{\partial E} \frac{1}{T} = \frac{T}{T^2}\left( \frac{\partial T}{\partial E} \right) = \frac{1}{TNc_v} \] 
+
+\[Z = \int_0^{\infty} dE e^{\beta F} \approx e^{-\beta F(T,V,N,E_{\min})} 
+\underbrace{\int_0^{-\infty} dE \: e^{\frac{-1}{2k_BT^2Nc_v}(E-E_{\min})^2}}_{\sqrt{2\pi k_BT^2Nc_V}} \]
+\[ = e^{-\beta F(T,V,N,E_{\min})}+ \frac{1}{2} \ln(2 \pi k_BT^2Nc_V ) \] 
+\[ \approx_{N \to \infty} e^{-\beta F(T,V,N,E_min)} \] 
+and so the second term is negligeble when $ N \to \infty $ except when $ c_V \to \infty $ (at phase transition) and $ T \to 0$ (which is taken care by QM).
+\subsubsection{Identities}
+\[ \ln(Z) = -\beta F  \] 
+\[ \frac{\partial }{\partial \beta} (\ln(z)) = \frac{1}{Z}\left( \frac{\partial Z}{\partial \beta} \right) = \frac{1}{Z}\frac{\partial }{\partial \beta} \left( \int \frac{DPDQ}{N!h^{3N}} e^{-\beta H} \right)   \] 
+\[ = \frac{1}{Z} \int \frac{DPDQ}{N!h^{3N}} He^{-\beta H} = - \langle H\rangle = -U \quad \text{In the canonical ensemble.} \] 
+\[ \implies \frac{\partial }{\partial \beta}  (\beta F) = U\] 
+
+\subsection{Fluctuations (Beyond TD)}
+\[ c_V  = \frac{1}{N} \left( \frac{\partial U}{\partial T} \right)_{V,N} = \frac{1}{N} \frac{\partial }{\partial T} \langle E \rangle \] 
+\[ = \frac{1}{N} 
+\underbrace{\frac{\partial \beta}{\partial T}}_{-\frac{1}{k_BT}}
+\frac{\partial }{\partial \beta} \langle E \rangle \] 
+\[ \langle E \rangle = \frac{1}{Z} \int \frac{DPDQ}{N!h^{3N}} He^{-\beta H}  \] 
+\[ \frac{\partial \langle E\rangle}{\partial \beta} = \frac{\partial }{\partial \beta} (Z^{-1}) \int \frac{DPDQ}{N!h^{3N}}He^{-\beta H} + Z^{-1} \int \frac{DPDQ}{N!h^{3N}} \langle H^2\rangle e^{\beta H}  \] 
+Notice $ \frac{\partial }{\partial \beta}(Z^{-1}) = -\frac{1}{Z^2}\frac{\partial Z}{\partial \beta} = - \frac{1}{Z}\frac{\partial \ln(Z) }{\partial \beta} = \frac{1}{Z}\langle E \rangle $. \\
+So the above equation is
+\[ \left \langle E \right \rangle ^2 - \langle E^2 \rangle \] 
+so
+\[ c_V =  \frac{1}{Nk_BT} \left( \langle E^2 \rangle - \langle E \rangle^2 \right) \] 
+\[ = \frac{1}{Nk_BT} \left( \langle E - \langle E \rangle\rangle \right)^2   \] 
+\section{Other Ensembles}
+\subsubsection{Grand Canonical Ensemble}%
+
+\[ Z(T,V,\mu) = \sum_{n=0}^{\infty} e^{\beta \mu N} Z(T,V,N) \] 
+TD: is by approximating the sum by the max summand which means determining $ N_max $ such that $ \beta \mu N - \beta F(T,V,N) $ is maximal.
+\[ \Omega(\mu, T, V)\beta \mu N - \beta F(T,V,N)  \] is the grand potential 
+For extensive system
+\[ \Omega = - PV \] 
+which is useful for calculation $ P $.
+\[ Z(T,V,\mu) = \sum_{n=0}^{\infty} \int \frac{DPDQ}{N!h^{3N}}e^{-\beta{H-\mu N}}\] 
+
+\subsubsection{Gibbs Ensemble}%
+\[ Z(T,P,N) = \int dV e^{\beta PV} Z(T,V,N)\] 
+Approximate the integral by max integrand
+\[ e^{-\beta G} =  Z(T,P,N) \approx e^{\beta (F(T,V_{\max}, N)) + PV_{max}} \]
+
+\chapter{Quantum Statistical Mechanics}
+\section*{Notations}
+Quantum state $ \ket{\phi} = \sum_{n} c_n \ket{n} $
+where we sum over all energies for each energy either state.
+\[ H\ket{n} = E_n\ket{n} \] 
+where $ E_n $ is the energy eigenvalue. \\
+Normalisation:
+\[ \sum_{n} |c_n|^2 = 1\] 
+Energy eigenstates $ \ket{n} $ can be represented as a wave function:
+\[ \psi(r_1 \cdots r_n) = \braket{r_1 \cdots r_n | \psi} \] 
+
+QM: Intrinsic probabilities: Given if we know $ \ket{\psi} $, the measurement outcome is uncertain. \\
+Any observable (a measurement quantity) can be written in its spectral representation.
+\[ \hat O - \sum_{i} \lambda_i \ket{O_i}\bra{O_i}, \] where $ \ket{O_i} $ is an eigenstates of $ \hat O $ and $ \lambda_i $ are eigenvalues.\\
+
+The QM average value for a given $ \ket{\psi} $ :
+\[ \braket{\psi|\hat O|\psi} = \sum_i \lambda_i 
+\underbrace{\braket{\psi|O_i} \braket{O_i|\psi}}_{P_i(\psi)}\] 
+where $ P_i(\psi) $ is the probability of measuring $ \lambda_i $ in state $ \psi $.\\
+
+Time dependence:
+\[ i \hbar \frac{\partial }{\partial t} \ket{\psi} = H \ket{\psi}  \] 
+\[ \ket{\psi,t} - \sum_{n} c_n e^{-iE_nt/\hbar} \ket{n} \] 
+
+Ensemble average:\\
+Operator $ \hat A $, the combined ensemble and QM average is
+\[ \langle A \rangle = \int_{\forall \psi} p_{\psi} \braket{\psi|\hat A|\psi}\] 
+$ P_{\psi} $ is the prob to find the system in state $ \ket{\psi} $.\\
+\[ \ket{\psi} = sum_n |c_n| e^{i\phi_n} e^{-iE_nt/\hbar} \ket{n} \] 
+So the probability of finding $ p_{\psi} = p_{\{|c|, \phi\}}$ 
+The subscript is the set of amplitudes and phases for all energy eigenstates. ($ \sum_n |c_n|^2 = 1 $ )
+\[ \langle A \rangle = \int D|c| \: \int D\phi P_{\{|c|, \phi\}} \sum_{mn} |c_m||c_n| e^{-i(\phi_m-\phi_n)} e^{i(E_m-E_n)t/\hbar} \braket{m|A|n}\]
+\[ D\phi  = \frac{d\phi_1}{2\pi} \frac{d\phi_2}{2\pi} \] 
+Assume incoherent ensemble: $P_{\{|c|, \phi\}} = P_{|c|}, $ all phases are equally likely
+\[ \int \frac{d\phi_n}{2\pi} \frac{d\phi_m}{2\pi} e^{-i(\phi_m-\phi_n)} = \delta_{m,n} \] 
+The integrand is $ 0 $ when $ m=n $ and the integral is otherwise $ 0 $.
+\[ \langle A \rangle = \sum_{m,n} \int D\ket{c| |c_n||c_m| P_{\{|c|\}}} \delta_{m,n} e^{-i(E_m-E-n)t/\hbar} \braket{m|\hat A|n} \] 
+\[ \sum_n 
+	\underbrace{\int D|c| \: |c_n|^2 P(\{c\}) }_{P_n}
+\braket{n|\hat A|n}  \] 
+\[ \implies \langle A \rangle = \sum_n P_n \braket{n|\hat A|n} \] 
+One cam interpret $ P_n $ as the probability of energy eigenstate $ \ket{n} $ \\
+$ P_n $ can be interpreted as the probability because $ P_n \geq 0 $ and it is normalised choose $ \hat A =1  $   
+\[ \implies \langle 1 \rangle = \sum_n P_n \braket{n|n} \implies \sum_n P_n = 1 \] 
+
+\section{QM Cannonical Ensemble}
+
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\begin{figure}[htpb]
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-1.2880071187739754,-2.4115332225931123) rectangle (8.846360010693779,5.046163526893578);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,4) -- (0,0) -- (6,0) -- (6,4) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (2,3) -- (2,2) -- (4,2) -- (4,3) -- cycle;
+\draw [line width=2pt,color=zzttqq] (0,4)-- (0,0);
+\draw [line width=2pt,color=zzttqq] (0,0)-- (6,0);
+\draw [line width=2pt,color=zzttqq] (6,0)-- (6,4);
+\draw [line width=2pt,color=zzttqq] (6,4)-- (0,4);
+\draw [line width=2pt,color=zzttqq] (2,3)-- (2,2);
+\draw [line width=2pt,color=zzttqq] (2,2)-- (4,2);
+\draw [line width=2pt,color=zzttqq] (4,2)-- (4,3);
+\draw [line width=2pt,color=zzttqq] (4,3)-- (2,3);
+\draw (3.4137757197453826,1.4802046325109222) node[anchor=north west] {$E_R$};
+\draw (3.3873612094166226,2.8185398225014495) node[anchor=north west] {$E_l$};
+\begin{scriptsize}
+\draw[color=zzttqq] (2.9911435544852156,1.4669973773465417) node {$resevoir$};
+\draw[color=zzttqq] (2.9735338809327088,2.5852116479307328) node {$system$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+\label{fig:QM-canonical-ensemble}
+\end{figure}
+$ E_l $, energy level $ l $ in our system, level $ l $ gas degeneracy $ \Omega(E_l) $. \\
+$ E_R $  is the energy in the resevoir, with degeneracy $ \Omega_R(E_R) $ 
+$ E_T $ is the total energy of the system, with degeneracy $ \Omega_T(E_T) $ 
+\begin{remark}	
+	We know that in QM energies have gaps, therefore it is important that the resevoir is big.
+\end{remark}
+
+\[ P_l = \frac{\Omega_R(E_T-E_l) \Omega(E_l)}{\Omega_T(E_T)} \]
+\[ \ln(P_l) = \ln(\Omega(E_T-E_l)) - \ln(\Omega(E_T)) - \ln(\Omega(E_l))   \] 
+$ E_T >> E_l $ 
+\[ \ln(\Omega_l(E_T)) - 
+E_l \frac{\partial }{\partial E_R} \ln(\Omega_R(E_R)) \vert_{E_R=E_l}\]
+\[ = \ln(\Omega(E_l)) -\beta E_l + 
+\underbrace{\ln(\Omega_R(E_T)) - \ln(\Omega_T(E_T))}_{-\ln(Z) }    \] 
+\[ P_l = \frac{\Omega(E_T)e^{-\beta E_l}}{Z} \] 
+\[ Z = \sum_l \Omega(E_l)e^{-\beta E_l} = \sum_n e^{-\beta E_n}\] 
+where the sum over $n$ is all energy eigenstates. \\
+The probability of having a particular energy eigenstates $ P_n $ 
+\[ P_n = \frac{e^{-\beta E_n}}{Z}, \quad  Z = \sum_n e^{-\beta E_n}\] 
+\[ \langle A \rangle = \sum_n \frac{e^{-\beta E_n}}{Z} \braket{n|\hat A|n} \] 
+If $ A = H $,
+\[ \braket{n|H|n} = E_n \braket{n|n} = E_n \] 
+\[ U = \braket{H} \sum_n \frac{E_n e^{-\beta E_n}}{Z} = \frac{1}{Z} \left( -\frac{\partial }{\partial \beta}  \right) 
+\overbrace{\sum_n e^{-\beta E_n}}^{Z} 
+= - \frac{\partial \ln(Z) }{\partial \beta} \] 
+So
+\begin{shaded*}
+
+\[ U = -\frac{\partial }{\partial \beta} \ln(Z)  \] 
+
+\end{shaded*}
+
+We can define Helmholtz free energy from $ F = -k_BT\ln(Z) $ or we can define it using the TD identity, $ \frac{\partial }{\partial \beta F}= U = -\left(\frac{\partial }{\partial \beta}\right)_{V,N} \ln(Z)  $
+On integration
+\[ \beta F =  -\ln(Z) + f(V,N)  \] 
+$ f(V,N) $ can be taken to $ 0 $ for identical particles but is $ f(V,N) = -\ln(N!)  $ for distinguishable QM particles. 
+(We will not treat such systems, so $ f(V,N) $ = 0 )
+\[ F = -k_BT\ln(Z)  \] 
+\subsection{Entropy}
+\[ S = -\left( \frac{\partial F}{\partial T} \right)_{V,N} = k_B\ln(Z) +k_B 
+\underbrace{\frac{\partial \beta}{\partial T}}_{-\frac{1}{k_BT^2}}
+\underbrace{\frac{\partial }{\partial \beta} \ln(Z)}_{-\frac{1}{Z}\sum_n E_n e^{-\beta E_n}} \] 
+\[  =k_B \left( \ln(Z) + \frac{1}{k_BT} \sum_n E_n \frac{e^{-\beta E_N}}{Z} \right)  \] 
+Now use $ \sum_n P_n =1 $ 
+\[ S = k_B \sum_n(P_n\ln(Z) +\underbrace{\beta E_n}_{-\ln(Z)-\ln(P_n)  } P_n) \] 
+\[ = -k_B \sum_n P_n \ln(P_n)  \] 
+\[ S = -k_B\sum_n P_n \ln(P_n)  \] 
+Apart from $ k_B $ this expression is the information theory entropy of how much information (or lack thereof) it is in a probability distribution.
+\begin{example}
+	For $ n=1 ....K $ if $ P_i = 1 $ and the rest is 0
+\end{example}
+\begin{example}
+	\[ P_1 = \frac{1}{X} \forall i \implies S = -k_B \frac{K}{K}\frac{1}{K} = k_B \ln(K) \]
+\end{example}
+\section{Statistical Mechanics from Information Theory}
+Cannonical ensemble: choose the probability distribution with the least amount of information (maximum entropy) consistent with the constraints: $ \sum_n P_n = 1 $ 
+\[ \sum_n E_nP_n = U \] 
+(Jaynes, 1957)
+Maximise $ -\sum_n P_n \ln(P_n)  $ 
+subject to the constraints: $ \sum_n P_n = 1, \quad \sum_n E_n P_n = U $
+Use Lagrange Multiplier $ \tilde \alpha, \tilde \beta $ 
+\[ 0 = \frac{\partial }{\partial P_n} \left( -\sum_i P_i \ln(P_i) - \alpha (\sum_i P_i -1) - \tilde \beta(\sum_i E_i P_i - U) \right)  \] 
+\[ 0 = -\ln(P_n) -1 -\tilde \alpha - \tilde \beta E_n \] 
+\[ \ln(P_n) = -1 -\tilde \alpha -\tilde \beta E_n \] 
+\[ P_n = e^{-1-\tilde \alpha} e^{-\tilde \beta E_n}= \frac{e^{-\tilde \beta E_n}}{\sum_n e^{\tilde \beta E_n}} \] 
+1. constraint:
+\[ \sum_n P_n = 1 \implies e^{-1-\tilde \alpha }\sum_n e^{-\tilde \beta E_n} = 1 \implies e^{-1-\tilde \alpha} = \frac{1}{\sum_n e^{-\tilde \beta E_n}} \] 
+2. constraint: $ \sum_n E_n P_n =U $ 
+\[ \left( \frac{\partial U}{\partial T} \right) = Nc_V > 0  \] 
+\[ \sum_n E_n  \frac{e^{-\tilde \beta E_n}}{\sum_n e^{-\tilde \beta E_n}} = 
+U \overbrace{=}^{\text{from constraint}}
+\sum_n \frac{e^{-\beta E_n}}{\sum_n e^{-\beta E_n}}\] 
+\[ \implies \tilde \beta = \beta = \frac{1}{k_BT}  \] 
+
+\section{The 3rd Law of TD}
+\[ Z = \sum_l \Omega(l) e^{-\beta E_l}\] 
+$ l=0 $ is the lowest energy level, we can
+\[ Z = \Omega(0) e^{-\beta E_0} 
+\left(1+\sum_{l>0} \frac{\Omega(l)}{\Omega(0)} e^{-\beta 
+\underbrace{(E_l - E_0)}_{\to 0 as \beta \to \infty}}
+\right) \to^{T \to 0 (\beta \to \infty)} \Omega(0)e^{-\beta E_0} \] 
+The probability that the system is in one of the ground state for $ T \to 0 $ is 
+\[ P_0 = \frac{e^{-\beta E_n}}{\Omega(0)e^{-\beta E_0}} = \frac{1}{\Omega(0)} \] 
+Equally distributed among the $ \Omega(0) $ ground states. 
+\[ S = -k_B \sum_{n} P_n \ln(P_n)  \] 
+\[ =^{T \to 0} -k_B \Omega(0) \frac{1}{\Omega(0)} \ln(\frac{1}{\ln(\Omega(0)) })  \] 
+\[ S = k_B\ln(\Omega(0))  \] which is T independent. \\
+$ \Omega(0) $ is a degeneracy $ \to \Omega(0) \geq 1$  (quantum system)\\
+If there is a unique ground state $ \Omega(0) = 1 \implies S = 0$. \\
+If there is degeneracy, $ S(T \to 0) - k_B \ln(\Omega(0)) > 0 $. In some systems, like glasses, there is a very large degeneracy of the ground state $ \Omega(0) \sim a^{N} $. Then $ S(T \to 0) =  k_B\ln(a^{N}) = Nk_B\ln(a) $, and so even entropy per particle is finite. 
+
+\section{Quantum Cannonical Ensemble Calculations}
+\newcommand{\bzf }{\sum_n e^{-\beta E_n}}
+\subsection{Derivatives of "averages"}
+\[ \langle A \rangle  =  \frac{1}{Z} \sum_n \braket{n|A|n} e^{-\beta E_n} \] 
+where $Z = \sum_n e^{-\beta E_n} $.
+\[ \frac{\partial \langle A \rangle}{\partial \beta } 
+= \left( \frac{\partial }{\partial \beta} Z^{-1} \right) 
+\sum_n \braket{n|A|n} e^{-\beta E_N} + \frac{1}{Z} \sum_n 
+\underbrace{\braket{n|A|n} (-E_n)}_{-\braket{n|AH|n}}
+e^{-\beta E_n}\]
+\[ \left( \frac{\partial Z^{-1}}{\partial \beta} = 
+- \frac{1}{Z^2} \frac{\partial Z}{\partial \beta}
+= \frac{1}{Z^2} \bzf 
+= \frac{1}{Z} \langle H \rangle \right) \] 
+\[ \implies \frac{\partial \left \langle A \right \rangle }{\partial \beta} = \left \langle H \right \rangle \left \langle A \right \rangle - \left \langle AH \right \rangle \] 
+for the special case $ A= H $ 
+\[ \frac{\partial \left \langle H \right \rangle }{\partial \beta} =
+-\left( \left \langle H^2 \right \rangle - \left \langle H \right \rangle ^2  \right) 
+= - \left \langle \left( H-\left \langle H \right \rangle  \right) ^2 \right \rangle \] 
+Independent "particles"
+Assume that $ H = \sum_{j=0}^{N} H_j $when $ [H_j, H_i] = 0 $ for $ i \neq j $.
+Then each $ H_j $ can be diagonalised separately.
+\[ H_j \ket{n_j} = E_{n_j} \ket{n_j} \] 
+and the eigenstate of the full system is
+\[ \ket{\{n_j\}} = \prod_{j=1}^{N} \ket{n_j}\] these $ \ket{n_j} $'s are single particle eigenstates.
+\[ H\ket{\{n\}} = \sum_{j=1}^{N} H_j \ket{\{n\}}
+= \sum_{n=0}^{N} H_j \prod_{i=1}^{N} \ket{n_i}\] 
+\[ = \underbrace{\sum_{j=1}^{N} E_{n_j}}_{\text{sum of single particle energies.}} 
+\ket{\{n\}} \] 
+Really, it's just commuting Hamiltonians.
+\[ Z = \sum_{\text{all } n_j \text{'s for all j's}} e^{-\beta \sum_{j=1}^{{N}}E_{n_j}} = \sum \prod_{j=1}^{{N}}e^{-\beta E_{n_j}} \] 
+\[ = \sum_{n_1} \sum_{n_2} \cdots \sum_{n_N} \prod_{j=1}^{N} e^{-\beta E_{n_j}} 
+= 
+\sum_{n_1}e^{-\beta E_{n_1}} 
+\sum_{n_2}e^{-\beta E_{n_2}}
+\cdots
+\sum_{n_N}e^{-\beta E_{n_N}}
+\] 
+is all single particle sums are identical (same eigenvalues $ \{E_{n_1}\}  = \{E_{n_2}\} \cdots $ )
+Then
+\begin{shaded*}
+\[ Z = (Z_1)^{N} \] 
+where $ Z_1 = \bzf $ summing over single particle energy eigenstates 
+\end{shaded*}
+\textbf{Free Energy:} \\
+\[ F = -k_B T \ln(Z) \] 
+\[ = -Nk_BT\ln(Z_1)  \] (Extensive)
+
+\subsection{Examples of Single Particle systems}
+\subsubsection{Two level systems}
+\begin{example}[Two non-degenerate levels]
+\[ H = \epsilon \cdot n, \quad  \in \{0,1\} \] 
+\[ Z = \bzf = 1+e^{-\beta \epsilon }  \] 
+\[ F = -k_BT \ln(Z) = - k_B \ln(1+e^{-\beta \epsilon})  \] 
+\[ U - \frac{\partial \beta F}{\partial \beta} = - \frac{\partial \ln((1+e^{-\beta \epsilon})) }{\partial \beta} = 
+-\frac{1}{1+e^{-\beta \epsilon}} - \epsilon e^{-\beta \epsilon} 
+= \frac{ \epsilon e^{-\beta E_n}}{1+e^{-\beta \epsilon}}
+= \frac{ \epsilon }{e^{\beta \epsilon} + 1} = \epsilon\left \langle n \right \rangle \] 
+\[ \left \langle n \right \rangle = \frac{1}{Z} \sum_{n=0}^{1} n e^{-\beta E_n} = \frac{e^{-\beta \epsilon}}{1+e^{-\beta \epsilon} }
+= \frac{1}{e^{\beta \epsilon} + 1}\] 
+\end{example}
+
+\begin{example}[Simple Magnet in a field]
+Spin $ \frac{1}{2} $, $ H = -h \sigma  $  for $ \sigma = \pm 1 $ 
+\[ Z = \sum_{\sigma = \pm 1} e^{-\beta h \sigma} = e^{-\beta h} + e^{\beta h} = 2 \cosh(\beta h)\] 
+\[ F = -k_BT\ln(Z) = -k_BT\ln(2\cosh(\beta h))  \] 
+\[ U = \frac{\partial \beta F}{\partial \beta } =
+-\frac{\partial }{\partial \beta} \ln(2\cosh(\beta h)) = -2\frac{\sinh(\beta h)}{2\cosh(\beta h)} h\] 
+\[ = -h \tanh(\beta h) \] 
+\[ \left \langle \sigma \right \rangle = \frac{1}{Z} \sum_{\sigma} \sigma e^{-\beta h \sigma} = \frac{1}{Z} \frac{\partial }{\partial \beta h} \sum e^{\beta h} = \frac{\partial }{\partial (\beta h)}(\ln(Z) ) \] \[ = \frac{1}{2\cosh(\beta h)} 2\sinh(\beta h) = \tanh(\beta h) \] 
 
 
+\definecolor{wwwwww}{rgb}{0.4,0.4,0.4}
+\begin{figure}	
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-2,
+xmax=2,
+ymin=-2,
+ymax=2,
+xtick={-3,...,3},
+ytick={-1,...,1},]
+\clip(-2.6697760390232164,-2.60100693641494) rectangle (3.4467951751831345,1.9000667546647876);
+\draw[line width=2pt,color=wwwwww,smooth,samples=100,domain=-2.6697760390232164:3.4467951751831345] plot(\x,{tanh((\x))});
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{figure}
 
+\end{example}
+
+\begin{example}[The Harmonic Oscillator]
+\[ E_n = \hbar \omega(n+ \frac{1}{2}) \] 
+\[ Z = \sum_{n=0}^{\infty}e^{-\beta \omega (n+ \frac{1}{2})} 
+= e^{-\beta \frac{\hbar \omega}{2}} \sum_{n=0}^{\infty} e^{-\beta \hbar \omega n} =^{\text{geometry series}} = \frac{1}{1-e^{-\beta \hbar \omega}} e^{-\beta \frac{\hbar \omega}{2}}\] 
+\[ F = -k_BT\ln(Z)  \] 
+\[ = -k_B T\ln(e^{-\beta \frac{\hbar \omega}{2}}) - k_B T\ln(1-e^{-\beta \hbar \omega})^{-1}   \] 
+\[ =\frac{\hbar \omega}{2} + k_BT \ln(1-e^{-\beta \hbar \omega}) \] 
+\[ U = \frac{\partial }{\partial \beta} (\beta F) = \frac{\hbar \omega}{2} + \frac{\partial }{\partial \beta} \ln(1-e^{-\beta \hbar \omega}) 
+\frac{\hbar \omega}{2} + \frac{\hbar \omega e^{-\beta \hbar \omega}}{1-e^{\beta \hbar \omega}}\] 
+\[ = \frac{\hbar \omega}{2} + \hbar \omega \frac{1}{e^{\beta \hbar \omega}-1} \] 
+\[ U = \frac{1}{Z}\sum_{n=1}^{\infty} \hbar \omega (n + \frac{1}{2}) e^{-\beta h \omega (n+ \frac{1}{2})} \] 
+\[ = \frac{\hbar \omega}{2} + \frac{\hbar \omega}{2} \sum_{n=0}^{\infty} n e^{-\beta \hbar \omega (n+ \frac{1}{2})} = \frac{\hbar \omega}{2}+\hbar \omega \left \langle n \right \rangle  \] 
+\[ \left \langle n \right \rangle = \frac{1}{e^{\beta \hbar \omega}-1} \] 
+This is the Bosonic occupation number.
+For $ \beta \hbar \omega << 1 $ (high-T regime)
+\[ e^{\beta \hbar \omega} \approx 1 + \beta \hbar \omega \] 
+\[ \left \langle n \right \rangle \approx \frac{1}{1+\beta \hbar \omega -1} \]
+\[= \frac{1}{\beta \hbar \omega} 
+= \frac{k_BT}{\hbar \omega} \] 
+\end{example}
+
+\section{The Harmonic Solid and the Debye Approximation}
+For simplicity, we consider a $ 1D $ model of vibrating atoms. 
+\[ r_j = R_j + X_j, \quad R_j = ja, \: j \in [0, N-1]\] where $ a $ is the lattice spacing.
+Let us use periodic boundary conditions:
+\[ r_{j+N} = r_j \] 
+\[ H = \frac{1}{2}m \sum_{j} \dot r_j ^2 + \frac{1}{2} K \sum_j(r_{j+1}-r_j-a)^2 \] 
+$ R_j $ are independent of time and $ r_{j+1}-r_j = a + x_{j+1} - x_j$.
+\[ H = \frac{1}{2}m \sum_j \dot x_j^2 + \frac{1}{2}k \sum_j (x+{j+1}-x_j)^2 \] 
+Now introduce the \textbf{Fourier transform}:
+\[ X_k  = \frac{1}{\sqrt{N}}  \sum_j x_j e^{-ikR_j},\quad
+x_j = \frac{1}{\sqrt{N}} \sum_k x_k e^{ikR_k}\] 
+$ (R_j = aj) $ 
+$ x_j $'s are real,
+\[ \implies x_k^{*} = \frac{1}{\sqrt{N}} \sum_j x_j^{*} e^{ikR_j}
+= \frac{1}{\sqrt{N}} \sum_j \underbrace{x_j}_{=x_j^{*}} e^{-i(-k)R_j} = x_{-k}\] 
+PBC
+\[ x_{j+N} = x_j \implies x_{j+N} = \frac{1}{\sqrt{N}} \sum_k x_k e^{ik\underbrace{R_{j+N}}}_{R_j+Na} = e^{ikNa}\frac{1}{\sqrt{N}} \sum_k x_k e^{ikR_j}\] 
+\[ \implies e^{ikNa} = 1 \implies k = \frac{2\pi}{Na}n \] 
+If $ (k+\Delta)R_j = 2\pi z + kR_j $ then $ x_{k+\Delta} $ 
+\[ \implies \Delta R_j = 2 \pi z \implies \Delta = \frac{2\pi z}{ja} \] 
+if $ \Delta = \frac{2\pi}{a} $ then $ x_{k+\frac{2\pi}{a}} = x_R $  \\
+So all info about $ x_j $'s are gotten from $ x_k $'s where $ k \in [0, \frac{2\pi}{a}] $ or equivalently $  [-\frac{\pi}{a}, \frac{\pi}{a})$. \\
+
+For $ N $ even
+\[ k = \frac{2\pi}{Na}, \quad {0, \pm 1, \pm 2, \cdots, \pm (\frac{N}{2} - 1)}, \pm \frac{N}{2} \] 
+$ N $ odd:
+\[ k = \frac{2\pi}{Na} {0, \pm_1,\cdots, \pm{\frac{N-1}{2}} } \] 
+
+Now express $ H $ in terms of $ x_k $'s
+\[ \sum_j \dot x_j^2 = \sum_j \frac{1}{N}\sum_k \sum_{k'} \dot x_k \dot x_{k'} e^{i(k+k')R_j} \] 
+\[ \sum_{j=0}^{N-1}  e^{i(k+k')R_j} 
+= \sum_{j=0}^{N-1} e^{\frac{2\pi}{aN}(n+n')ja}
+= \frac{1-e^{2\pi(n+n')}}{1 - e^{i\frac{2\pi}{N}(n+n')}}
+= \frac{N\delta_{n,n'}}{N\delta_{k'-k}}\] 
+\[ \sum_j \dot x_j^2 = \frac{1}{N} \sum_k \sum_k' \dot x_k \dot x_{k'}N \delta_{k'-k} \] 
+\[ = \sum_k \dot x_k \dot x_{-k} = \sum_k |\dot x_k|^2\] 
+
+\textbf{Potential Energy} 
+\[ \sum_j(x_{j+1}-x_j)^2 = \frac{1}{\sqrt{N}} \] 
 \end{document}

@@ -1,0 +1,36 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-1.2880071187739754,-2.4115332225931123) rectangle (8.846360010693779,5.046163526893578);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,4) -- (0,0) -- (6,0) -- (6,4) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (2,3) -- (2,2) -- (4,2) -- (4,3) -- cycle;
+\draw [line width=2pt,color=zzttqq] (0,4)-- (0,0);
+\draw [line width=2pt,color=zzttqq] (0,0)-- (6,0);
+\draw [line width=2pt,color=zzttqq] (6,0)-- (6,4);
+\draw [line width=2pt,color=zzttqq] (6,4)-- (0,4);
+\draw [line width=2pt,color=zzttqq] (2,3)-- (2,2);
+\draw [line width=2pt,color=zzttqq] (2,2)-- (4,2);
+\draw [line width=2pt,color=zzttqq] (4,2)-- (4,3);
+\draw [line width=2pt,color=zzttqq] (4,3)-- (2,3);
+\draw (3.4137757197453826,1.4802046325109222) node[anchor=north west] {$E_R$};
+\draw (3.3873612094166226,2.8185398225014495) node[anchor=north west] {$E_l$};
+\begin{scriptsize}
+\draw[color=zzttqq] (2.9911435544852156,1.4669973773465417) node {$resevoir$};
+\draw[color=zzttqq] (-0.10815899075600913,2.109750462013045) node {$a$};
+\draw[color=zzttqq] (3.035167738366483,-0.03862971139280172) node {$b$};
+\draw[color=zzttqq] (6.169689630712722,2.109750462013045) node {$c$};
+\draw[color=zzttqq] (3.035167738366483,4.249325798642638) node {$d$};
+\draw[color=zzttqq] (2.9735338809327088,2.5852116479307328) node {$system$};
+\draw[color=zzttqq] (1.8905389574535307,2.6028213214832396) node {$e$};
+\draw[color=zzttqq] (3.0615822486952435,1.99528758392175) node {$f_1$};
+\draw[color=zzttqq] (4.170991682503182,2.6028213214832396) node {$g$};
+\draw[color=zzttqq] (3.035167738366483,3.245574406149743) node {$h$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{document}

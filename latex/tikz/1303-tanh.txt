@@ -1,0 +1,40 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+ 
+%<<<<<<<WARNING>>>>>>>
+% PGF/Tikz doesn't support the following mathematical functions:
+% cosh, acosh, sinh, asinh, tanh, atanh,
+% x^r with r not integer
+
+% Plotting will be done using GNUPLOT
+% GNUPLOT must be installed and you must allow Latex to call external
+% programs by adding the following option to your compiler
+% shell-escape    OR    enable-write18 
+% Example: pdflatex --shell-escape file.tex 
+
+\begin{document}
+\definecolor{wwwwww}{rgb}{0.4,0.4,0.4}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-2.6697760390232164,
+xmax=3.4467951751831345,
+ymin=-2.60100693641494,
+ymax=1.9000667546647876,
+xtick={-2.5,-2,...,3},
+ytick={-2.5,-2,...,1.5},]
+\clip(-2.6697760390232164,-2.60100693641494) rectangle (3.4467951751831345,1.9000667546647876);
+\draw[line width=2pt,color=wwwwww,smooth,samples=100,domain=-2.6697760390232164:3.4467951751831345] plot(\x,{tanh((\x))});
+\begin{scriptsize}
+\draw[color=wwwwww] (-2.606006399952429,-0.9243968425121607) node {$f$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}

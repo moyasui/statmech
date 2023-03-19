@@ -1,0 +1,51 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-1.5699227372763418,-7.017420607886911) rectangle (16.273876599880758,6.1592995652360445);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (2,3) -- (2,0) -- (6,0) -- (6,3) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,5) -- (0,-3) -- (11,-3) -- (11,5) -- cycle;
+\draw [line width=2pt,color=zzttqq] (2,3)-- (2,0);
+\draw [line width=2pt,color=zzttqq] (2,0)-- (6,0);
+\draw [line width=2pt,color=zzttqq] (6,0)-- (6,3);
+\draw [line width=2pt,color=zzttqq] (6,3)-- (2,3);
+\draw [line width=2pt,color=zzttqq] (0,5)-- (0,-3);
+\draw [line width=2pt,color=zzttqq] (0,-3)-- (11,-3);
+\draw [line width=2pt,color=zzttqq] (11,-3)-- (11,5);
+\draw [line width=2pt,color=zzttqq] (11,5)-- (0,5);
+\draw (0.8725153585681783,4.588049580011229) node[anchor=north west] {Resevoir};
+\draw (3.7038767180822076,2.503420886742662) node[anchor=north west] {\parbox{1.8711881106197015 cm}{System  \textbackslash \textbackslash       E}};
+\begin{scriptsize}
+\draw [fill=ududff] (2,3) circle (2.5pt);
+\draw[color=ududff] (2.117069802310609,3.335716670995411) node {$A$};
+\draw [fill=ududff] (2,0) circle (2.5pt);
+\draw[color=ududff] (2.117069802310609,0.33322907546680364) node {$B$};
+\draw [fill=ududff] (6,0) circle (2.5pt);
+\draw[color=ududff] (6.130757883379948,0.33322907546680364) node {$C$};
+\draw [fill=ududff] (6,3) circle (2.5pt);
+\draw[color=ududff] (6.130757883379948,3.335716670995411) node {$D$};
+\draw[color=zzttqq] (1.8059311913750014,1.686682033036694) node {$a$};
+\draw[color=zzttqq] (4.061686120658156,-0.05569418820270508) node {$b$};
+\draw[color=zzttqq] (6.301884119394532,1.686682033036694) node {$c$};
+\draw[color=zzttqq] (4.061686120658156,3.429058254276093) node {$d$};
+\draw [fill=ududff] (0,5) circle (2.5pt);
+\draw[color=ududff] (0.12578269232271994,5.327003780983295) node {$E$};
+\draw [fill=ududff] (0,-3) circle (2.5pt);
+\draw[color=ududff] (0.12578269232271994,-2.6692585200618035) node {$F$};
+\draw [fill=ududff] (11,-3) circle (2.5pt);
+\draw[color=ududff] (11.12453258889645,-2.6692585200618035) node {$G$};
+\draw [fill=ududff] (11,5) circle (2.5pt);
+\draw[color=ududff] (11.12453258889645,5.327003780983295) node {$H$};
+\draw[color=zzttqq] (-0.20091284915966812,1.188860255539723) node {$e$};
+\draw[color=zzttqq] (5.555151453149073,-3.058181783731312) node {$f$};
+\draw[color=zzttqq] (11.295658824911033,1.188860255539723) node {$g$};
+\draw[color=zzttqq] (5.555151453149073,5.435902294810758) node {$h$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{document}
