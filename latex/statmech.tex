@@ -1725,5 +1725,178 @@ Now express $ H $ in terms of $ x_k $'s
 \[ = \sum_k \dot x_k \dot x_{-k} = \sum_k |\dot x_k|^2\] 
 
 \textbf{Potential Energy} 
-\[ \sum_j(x_{j+1}-x_j)^2 = \frac{1}{\sqrt{N}} \] 
+\[ \sum_j(x_{j+1}-x_j)^2 = \frac{1}{\sqrt{N}}\sum_k \left(x_ke^{ikR_{j+1}} - x_ke^{ikR_j} \right) 
+\frac{1}{\sqrt{N}} \sum_{k'} (x_{k'}e^{ik'R_{j+1}} - x_{k'}e^{ikR_j}) \] 
+\[ = \frac{1}{N} \sum_j \sum_k \sum_k' x_k x_{k'} \left( e^{ikR_{j+1}} - e^{ikR_j} \right)
+\left( e^{ik'R_{j+1}} - e^{ik'R_j} \right) \] 
+\[ = \frac{1}{N} \sum_j \sum_k \sum_{k'} x_k x_{k'} (e^{ika}-1)
+\left( e^{ik'a} -1 \right) 
+e^{i(k+k')R_j}\] 
+Then use $ \sum_j e^{(k+k')R_j} = N \delta_{k'-k} $ 
+\[ \sum_j (x_{j+1} - x_j)^2 = \sum_k x_k x_{-k} 
+	\underbrace{\left( e^{ika}-1 \right) \left( e^{-ika}-1 \right) }_{2-2\cos(ka)= 4\sin^2(\frac{ka}{2})}
+\] 
+
+\[ = \sum_k |x_k|^2 4\sin^2\left( \frac{ka}{2} \right)  \] 
+
+\[ H = \sum_k 
+\left( \frac{1}{2}m|\dot x_k|^2 + \frac{k}{2}|x_k|^2 \dot 4 \sin^2(\frac{ka}{2}) \right) 
+\] 
+
+This describes a collection of independent harmonic oscillators with a k-dependent stiffness and associated frequency.
+\[ \omega_k^2 = \frac{K_k}{m} = \frac{K_4\sin\left( \frac{ka}{2} \right) }{m} \] 
+\[ \implies \omega_k = 2 \tilde \omega \left|\sin \frac{ka}{1}\right| \] 
+\[ \tilde \omega = \sqrt{\frac{K}{m}} \] 
+
+\begin{figure}[ht]
+	\centering
+	\definecolor{qqqqff}{rgb}{0,0,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-2.0189993790175826,
+xmax=2.213622212791037,
+ymin=-0.2634527158439889,
+ymax=2.7567920088922344,
+xtick={-2,-1,...,2},
+ytick={0,...,3},]
+\clip(-2.0189993790175826,-0.2634527158439889) rectangle (2.213622212791037,2.7567920088922344);
+\draw[line width=2pt,color=qqqqff,smooth,samples=100,domain=-2.0189993790175826:-7.861305458077545e-7] plot(\x,{2*sqrt(-(\x))*abs(sin(((\x))*180/pi))});
+\draw[line width=2pt,color=qqqqff,smooth,samples=100,domain=0.0000034464910460008655:2.213622212791037] plot(\x,{2*sqrt((\x))*abs(sin(((\x))*180/pi))});
+\begin{scriptsize}
+\draw[color=qqqqff] (-1.3,1.4) node {$\omega_k$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+	\caption{Frequencies in the first brillion zone.}
+	\label{fig:phonon-modes}
+\end{figure}
+
+The quantum version is 
+\[ H = \sum_k \hbar \omega_k (a^{\dag})_k a_k + \frac{1}{2}\] 
+Then we can calculate the partition function as a system of independent harmonic oscillators. 
+\[ Z = \prod_k \left( \sum_{n_k=0}^{\infty} e^{-\beta \hbar \omega_k (n_k+ \frac{1}{2})}  \right)  \] 
+Helmoholtz free energy:
+\[ F = -k_BT\ln(Z) = \sum_k -k_BT\ln(Z_k) = 
+\sum_k \left( \frac{1}{2}\hbar \omega_k + k_BT\ln(1-e^{-\beta \hbar \omega_k})  \right) \] 
+\[ Z_k = \sum_{n=0}^{\infty} e^{\beta \hbar \omega_k} (n+ \frac{1}{2}) \] 
+The energy 
+\[ U =\frac{\partial \beta F}{\partial \beta} = \sum_k \left( \frac{1}{2}\hbar \omega_k + \frac{\hbar \omega_k}{e^{\beta \hbar \omega_k}-1} \right)  \] 
+For large N, the allowed k values are closely spaced and we can approximate the sum by an integral 
+
+\large{missing content}
+
+\newpage
+\section{Grand Cannonical Ensemble}
+\[ Z = \sum_{n=0}^{\infty} 
+	\overbrace{\sum_{\alpha} e^{-\beta E_{\alpha}}}^{\text{canonical partition f}}
+e^{\beta \mu N} \] 
+where $ \alpha $ is the energy eigenstate of the system with $ N $ particles. \\
+Simplification: independent particles.
+\[ E_{\alpha} = \sum_{j=1}^{N} 
+\underbrace{\epsilon_{\alpha_j}}_{\text{energy of single-particle state}} \] 
+\[ \alpha_{many-body state} = \{\alpha_1, \alpha_2 \cdots\} \] 
+\[ e^{-\beta \left( E_\alpha - \mu N \right) } \] 
+\[ = e^{\beta \sum_{j=1}^{N}\left( \epsilon_{\alpha_j} -\ mu \right) } \] 
+\[ \implies Z = \sum_{n=0}^{\infty}\sum_\alpha \prod_{j=1}^{N} e^{-\beta\left( \epsilon_{\alpha_j} - \mu \right) } \] 
+Again $ \alpha $ is all possible eigenstate of the systems with $N$ particle. \\
+A possible $ \alpha $ for $ 9 $ particles, might be
+\[ \alpha = 4,2,1,0,4,2,1,1,1 \] 
+Alternatively we can count how many particles have the same since single-particle state.
+\[ n_{\epsilon} = {n_0,n_1,n_2,n_3,n_4,n_5,n_6,n_7,n_8,n_9} \] 
+\[ = {1,4,2,0,2,0,0,0,0,} \] 
+Then 
+\[ Z = \sum_{n=0}^{\infty}\sum_{
+	\underbrace{\{n_{\epsilon}\}}_{\text{all possible occupation number with } \sum_{\epsilon} n_{\epsilon}=N }}
+\prod_{\epsilon} e^{-\beta( \epsilon - \mu )n_{\epsilon}} \] 
+
+\[ \sum_{n=0}^{\infty} \sum_{
+	\underbrace{\{n_{\epsilon}\}}_{\sum_{\epsilon} n_{\epsilon} = N}}
+= \sum_{ \{n_{\epsilon}\} } \] 
+So for independent particles, the partition function is then:
+\[ Z = \prod_{\epsilon} \sum_{n_{\epsilon}} e^{-\beta(\epsilon-\mu)n_{\epsilon}}\] 
+\subsection{Bosons}
+The many-body wave function may be compared to an arbitrary number of particles in the same single particle eigenstate. Thus,
+\[ Z_{\text{boson} = \prod_{\epsilon} \sum_{n_{\epsilon}=0}^{\infty}} 
+	e^{-\beta (\epsilon-\mu)n_{\epsilon}} = \prod_{\epsilon} 
+	\underbrace{\frac{1}{1- e^{-\beta(\epsilon-\mu)}}}_{Z_{\epsilon}\text{for bosons}}
+\] 
+\[ \left \langle n_\epsilon \right \rangle = \frac{1}{Z_{\epsilon, bosons}} \sum_{n=0}^{\infty} n_{\epsilon} e^{-\beta(\epsilon-\mu)n_\{\epsilon}\] 
+\[ = \frac{1}{Z_{\epsilon, bosons}} 
+\left( \frac{-1}{\epsilon-\mu}\frac{\partial }{\partial \beta} \sum_{n_{\epsilon}=0}^{\infty}e^{-\beta(\epsilon-\mu)n_{\epsilon}} \right) \] 
+\[ = \frac{-1}{\epsilon-\mu}\frac{\partial }{\partial \beta} \ln(Z_{\epsilon,boson})  \] 
+\[ = -\frac{1}{\epsilon-\mu} \frac{\partial }{\partial \beta} 
+\ln(1-e^{-\beta(\epsilon-\mu)})^{-1}\] 
+\[ = \frac{1}{\epsilon-\mu} \frac{\partial }{\partial \beta} \ln(1-e^{-\beta(\epsilon-\mu)}) \] 
+\[ \left \langle n_{\epsilon} \right \rangle = \frac{1}{\epsilon-\mu}\frac{1}{1-e^{-\beta(\epsilon-\mu)}} 
+(\epsilon-\mu) e^{-\beta(\epsilon-\mu)}\] 
+\[ = \frac{e^{-\beta(\epsilon-\mu)}}{1-e^{-\beta(\epsilon-\mu)}} \] 
+\begin{shaded*}
+\textbf{Boson occupation number factor} 
+\[ \left \langle n_{\epsilon} \right \rangle = \frac{1}{e^{\beta(\epsilon-\mu)}-1} \] 
+\end{shaded*}
+\subsection{Fermions}
+The occupation number are restricted to $ 0 $ or $ 1 $.
+\[ Z_{fermions} = \prod_{\epsilon} \sum_{n_{\epsilon}}^{1}e^{-\beta(\epsilon-\mu)}n_{\epsilon}\] 
+\[ = \prod_{\epsilon} \left( 1+e^{-\beta(\epsilon-\mu)} \right)  \] 
+\[ \left \langle n_{\epsilon} \right \rangle = -\frac{1}{\epsilon-\mu}  \frac{\partial }{\partial \beta} \ln(Z_{\epsilon,boson}) \] 
+\[ = -\frac{1}{\epsilon-\mu} \frac{\partial }{\partial \beta} \ln(1+e^{-\beta (\epsilon-\mu)})  \] 
+\[ = \frac{e^{-\beta(\epsilon-\mu)}}{1+e^{-\beta(\epsilon-\mu)}} \] 
+\[ \frac{1}{e^{-\beta(\epsilon-\mu)}+1} \] 
+\begin{shaded*}
+\textbf{The fermionic occupation number is}
+\[ \left \langle n_{\epsilon} \right \rangle = \frac{1}{e^{\beta(\epsilon-\mu)}+1} \] 
+which does not have any singularity.
+\end{shaded*}
+
+To summearise:
+\[ \left \langle n_{\epsilon} \right \rangle = \frac{1}{e^{-\beta(\epsilon-\mu)}\pm 1} \] 
+\[ Z_f = \prod_{\epsilon} (1+e^{-\beta(\epsilon-\mu)}) \] 
+\[ Z_b = \prod_{\epsilon} (1-e^{-\beta(\epsilon-\mu)})^{-1} \] 
+\[ \ln(Z_{f,b})  = \pm \sum_{\epsilon} \ln(1\pm e^{-\beta(\epsilon-\mu)}) \] 
+The relation:
+Classical ideal gas:
+\[ PV=Nk_BT \] 
+\[ U = \frac{3}{2}Nk_BT \] 
+\[ \implies PV = \frac{2}{3}U \] 
+The same relationholds also for a non-relativistic quantum gas of fermions or bosons. \\
+For an extensive system: $ U = TS-PV+\mu N $. \\
+Grand Potential \[ \Omega = F - \mu N = U -TS -\mu N = -PV \] 
+\[ Z_{\Omega} = e^{-\beta \Omega} = e^{-\beta PV}\] 
+\[ \beta PV = \ln(Z) = \pm \sum_{\vec{k}} \ln(1\pm e^{-\beta(\epsilon_{\vec{k}} - \mu)}) \] 
+where $ \vec{k} $ is all single particle energy eigenstates, and $ \epsilon_k $ is the associated energies. \\
+\[ U = \sum_{\vec{k}} {(e^{-\beta(\epsilon_{\vec{k}}-\mu)}\pm 1)}^{-1} \] 
+\[ = \sum_{\vec{k}} \epsilon_{\vec{k}} \left \langle n_{\vec{k}} \right \rangle  \] 
+\textbf{Free non-relativistic particles in a box} 
+\[ \epsilon_{\vec{k}} = \frac{\hbar^2}{2m} (k_x^2+k_y^2+k_z^2) \] 
+Going back to the expression for $ \beta PV $ 
+\[ \sum_k f(\epsilon_{\vec{k}}) = \sum_{\vec{k}} \int_{0}^{\infty} d\epsilon \delta( \epsilon - \epsilon' )\] 
+\[ = \int_{0}^{\infty} f(\epsilon) \frac{f(\epsilon)}{
+\underbrace{\sum_{\vec{k}} \delta( \epsilon - \epsilon_{\vec{k}} )}_{\text{Density of states}}}\] 
+\subsection{Density of States for Particles in a Box}
+\[ \epsilon_{\vec{k}} = \frac{\hbar^2}{2m} (k_x^2+k_y^2+k_z^2)\] 
+\[ k_x  = \frac{\pi}{L}n_x, \quad n_x \in \{1,2... \} \] 
+\[ k_y = \frac{\pi}{L}n_y, \quad k_z = \frac{\pi}{L}n_z \] 
+
+\[ D(\epsilon) = \sum_{k_x} \sum_{k_y} \sum_{k_z} \delta( \epsilon- \epsilon_{\vec{k}}) = \frac{V}{\pi^3} \frac{1}{8} \int dk_x dk_y dk_z \delta( \epsilon - \epsilon_{\vec{k}} ) \] 
+For large $ L $ we approximate:
+\[ \sum_{k_x} \underbrace{\Delta}_{\frac{\pi}{L}} = \int dk_x \implies \sum_{k_{x}} = \frac{L}{\pi} \int dk_x\] 
+Change to spherical coordinates:
+\[ D( \epsilon) = \frac{V}{\pi^3} \frac{1}{8} 4\pi \int_{0}^{\infty} dk k^2 \delta( \epsilon - \frac{\hbar^2}{2m}k^2 ) = \frac{V}{2\pi^2} 
+\underbrace{\int_{0}^{\infty} dk \: k^2 \delta( \epsilon - \frac{\hbar^2}{2m}k^2 ) }_{\frac{k^2}{\left|\frac{\hbar^2}{m}k\right|} \vert_{k= \sqrt{\frac{2m \epsilon}{\hbar^2}}}}
+\] 
+\[  = \frac{V}{4\pi^2} \left( \frac{2m}{\hbar^2} \right)^{\frac{3}{1}} \sqrt{2} \] 
+\[ \beta PV = \ln(Z) = \int_0^{\infty} d\epsilon \: \pm 
+\underbrace{\ln(1\pm e^{-\beta( \epsilon - \mu )})}_{u}  
+\frac{D(\epsilon)}{x\sqrt{\epsilon}}
+\] 
+and
+\[ U = \int_0^{\infty} d\epsilon \: \epsilon \left( e^{-\beta(\epsilon-\mu)} \pm 1 \right)^{-1} \frac{D(\epsilon)}{x\sqrt{\epsilon}}  \] 
+\[ \ln(Z) = \pm \ln(1 \pm e^{-\beta( \epsilon-\mu )}) x \epsilon^{\frac{3}{2}} \frac{2}{3} |vert_{0}^{\infty}   \] 
+\[  = \mp \int_0^{\infty} \frac{2}{3}X \epsilon^{\frac{3}{2}} \frac{\mp \beta e^{-\beta(\epsilon-\mu)}}{1 \pm e^{-\beta (\epsilon-\mu)}}\] 
+\[ \frac{2}{3}\beta U \] 
+\[ \implies PV = \frac{2}{3}U \] 
 \end{document}

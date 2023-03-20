@@ -1,0 +1,29 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-2.0189993790175826,
+xmax=2.213622212791037,
+ymin=-0.2634527158439889,
+ymax=2.7567920088922344,
+xtick={-2,-1.8,...,2.2},
+ytick={-0.2,0,...,2.6},]
+\clip(-2.0189993790175826,-0.2634527158439889) rectangle (2.213622212791037,2.7567920088922344);
+\draw[line width=2pt,color=qqqqff,smooth,samples=100,domain=-2.0189993790175826:-7.861305458077545e-7] plot(\x,{2*sqrt(-(\x))*abs(sin(((\x))*180/pi))});
+\draw[line width=2pt,color=qqqqff,smooth,samples=100,domain=0.0000034464910460008655:2.213622212791037] plot(\x,{2*sqrt((\x))*abs(sin(((\x))*180/pi))});
+\begin{scriptsize}
+\draw[color=qqqqff] (-1.6588521332107835,2.6943902583811554) node {$omega$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}
