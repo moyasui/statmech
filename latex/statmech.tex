@@ -1899,4 +1899,99 @@ and
 \[  = \mp \int_0^{\infty} \frac{2}{3}X \epsilon^{\frac{3}{2}} \frac{\mp \beta e^{-\beta(\epsilon-\mu)}}{1 \pm e^{-\beta (\epsilon-\mu)}}\] 
 \[ \frac{2}{3}\beta U \] 
 \[ \implies PV = \frac{2}{3}U \] 
+
+\section{Bose-Einstein Condensation}
+Boson occupation number:
+\[ \left \langle n_{ \epsilon_k } \right \rangle = \frac{1}{e^{-\beta( \epsilon_k - mu )}} -1\] 
+\[ \left \langle n_{ \epsilon_k } \right \rangle \geq 0 \implies
+\epsilon_k-\mu > 0 \forall \epsilon_k\] 
+Assume that the lowest energy level has $ \epsilon_k = 0$ 
+\begin{shaded*}
+\[ \implies \mu < 0 \] 
+\end{shaded*}
+
+Consider a free Bose gas in 3D. \\
+Use DOS $ D( \epsilon ) = \mathbb{X} \sqrt{ \epsilon }$: 
+Then the total number of bosons is
+\[ \left \langle N \right \rangle = \sum_k \left \langle n_{ \epsilon_k } \right \rangle = \int_{0}^{\infty} d \epsilon \: D( \epsilon ) 
+\underbrace{n_{\epsilon}}_{\frac{1}{e^{-\beta( \epsilon-\mu )-1}}} \] 
+\[ \left \langle N \right \rangle = X \int_{0}^{\infty} d \epsilon \: \frac{ \epsilon^{\frac{1}{2}}}{e^{-\beta( \epsilon-\mu )-1}} \] 
+let $ x = \beta \epsilon $ 
+\[ \left \langle N \right \rangle = X \frac{1}{\beta^{\frac{3}{2}}} \int_0^{\infty} \beta d \epsilon \frac{(\beta \epsilon)^{ \frac{1}{2} }}{e^{-\beta \mu } e^{\beta \epsilon}-1}\] 
+\[ = X (k_BT)^{\frac{3}{2}} \int_0^{\infty} dx \frac{x^{ \frac{1}{2} }}{e^{-\beta \mu}e^{x}-1} \] 
+
+When $ T $ is lowered, the value of the integral must increase for $ \left \langle N \right \rangle $ to stay fixed. However $ e^{-\beta \mu} $ cannot become smaller than 1 because then $ \mu $ is no longer negative. \\
+So there is a lowest $ T = T_E $ where the integral is a maximum $ \mu = 0$.
+This is
+\[ \left \langle N \right \rangle = X (k_BT)^{\frac{3}{2}} 
+\underbrace{\int_0^{\infty} dx \frac{x^{\frac{1}{2}}}{e^{x}-1}}_{\approx 2.315} \] 
+The integrand is divergent for $ x \to 0 $, but as $ \frac{1}{\sqrt{x}} $ which still is integrable.
+
+Something is fishy. We had:
+\[ \left \langle N \right \rangle = \sum_k \left \langle n_{ \epsilon_k } \right \rangle {\color{red} = } \int_{0}^{\infty} d \epsilon D(\epsilon) \frac{1}{e^{-\beta(\epsilon-\mu)}-1} \] 
+The problem lies in replacing the sum with the integral when the occupation number factor is wildly varying, which it is at low $ T $ for $ \epsilon \to 0 $.
+\[ \left \langle N \right \rangle = \left \langle N_0 \right \rangle + \sum_{k \neq 0} \left \langle n_{\epsilon_k} \right \rangle = \left \langle N_{\epsilon_0} \right \rangle +
+\underbrace{\int_{0}^{\infty} d\epsilon \frac{D(\epsilon)}{e^{-\beta(\epsilon-\mu)}-1}}_{\left \langle N_{ex} \right \rangle \text{Number of excited bosons}} \] 
+\[ \left \langle N_{ex} \right \rangle = (k_BT)^{\frac{3}{2}} 
+\underbrace{X\int_{0}^{\infty} dx \frac{x^{\frac{1}{2}}}{e^{x}-1}}_{\frac{\left \langle N \right \rangle }{(k_BT_{\epsilon})^{\frac{3}{2}}}}  \] 
+\[ \left \langle N \right \rangle = \left \langle N_{\epsilon_0} \right \rangle + \left \langle N_{ex} \right \rangle  \] 
+\[ \implies \left \langle N_{\epsilon_0} \right \rangle = \left \langle N \right \rangle \left( 1-(\frac{T}{T_\epsilon})^{\frac{3}{2}} \right)  \] 
+\begin{figure}[htpb]
+\begin{center}
+	\definecolor{ccqqqq}{rgb}{0.8,0,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=0,
+xmax=2,
+ymin=0,
+ymax=2,
+xtick={0,...,2},
+ytick={0,...,2},]
+\clip(-0.643824695475176,-0.6072934276777446) rectangle (2.4463424067533284,1.5977373520927152);
+\draw[line width=2pt,color=ccqqqq,smooth,samples=100,domain=0.0000023497728260930324:2.4463424067533284] plot(\x,{1-(\x)^(3/2)});
+\begin{scriptsize}
+	\draw[color=ccqqqq] (1,1) node {$\frac{\left \langle N_0 \right \rangle}{ \left \langle N \right \rangle }$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\caption{Number of ground state particles over number of particles.}%
+\label{fig:bec}
+\end{figure}
+
+\[ \left \langle N_{\epsilon_0} \right \rangle = \frac{1}{e^{-\beta \mu}-1} \approx \frac{1}{1-\beta \mu -1} = \frac{1}{-\beta \mu} \] 
+\[-\frac{1}{\beta \mu} = \left \langle N \right \rangle -  \left( 1- \frac{}{} \right) \] 
+\subsection{Energy}
+\[ U = U_0 + \int_{0}^{\infty} d \epsilon \: \frac{D(\epsilon)\epsilon}{e^{-\beta(\epsilon-\mu)-1}} \] 
+\[ = X \int_0^{\infty} d \epsilon \frac{\epsilon^{\frac{3}{2}}}{e^{-\beta( \epsilon-\mu )}-1} \] 
+\[ = X(k_BT)^{\frac{5}{2}} \int_{0}^{\infty} dx \frac{x^{\frac{3}{2}}}{e^{-\beta \mu}e^{x}-1} \] 
+\[ \underbrace{=}_{T-T_E} 1.7826X(k_BT)^{\frac{5}{2}} \] 
+with $ X = \frac{N}{2.315(k_BT_E)^{\frac{3}{2}}} $ 
+For $ T < T_E $ we may set $ e^{-\beta \mu} \approx 1$ 
+\[ \implies \int_{0}^{\infty} dx \frac{x^{\frac{3}{2}}}{e^{x}-1}=1.7826 \] 
+\[ c_V = \frac{1}{N}\left( \frac{\partial U}{\partial T} \right) = \frac{1.7826X}{N} \frac{5}{2}(k_BT)^{\frac{3}{2}} k_B = 1.925 \left( \frac{T}{T_E} \right)^{\frac{3}{2}}k_B \quad (T<T_E) \] 
+plot of $c_v$ here
+For $ T > T_E $, $e^{-\beta \mu}$ becomes big and energy decreases fast.
+
+\subsection{Fermions at Low Temperature}
+Fermion occupation number/ Fermi function:
+\[ f(\epsilon) = \frac{1}{e^{\beta(\epsilon-\mu)}+1} > 0 \quad \forall \: T,N\] 
+At low $ T $, high $ \beta $,
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\linewidth]{fermi-func.pdf}
+	\caption{Fermi Function(occupation number) at different Temperature.}
+	\label{fig:fermifunc}
+\end{figure}
+
+
+\[ T=0, \lim_{T \to 0} \mu = \epsilon_f \] 
+\[ f(\epsilon) = \Theta( \epsilon_f - \epsilon ) = \]
+
+\[ N = \sum_k f( \epsilon_k ) = \int_{0}^{\infty} D(\epsilon)f(\epsilon) = \int_0^{\epsilon_f} d \epsilon \: \underbrace{D(\epsilon)}_{X\sqrt{\epsilon}}   \] 
+\[ = X \frac{2}{3} \epsilon_{f}^{\frac{3}{2}} \implies \epsilon_f \propto (\frac{N}{V})^{\frac{2}{3}}\] 
 \end{document}
