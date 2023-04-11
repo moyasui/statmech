@@ -1984,7 +1984,7 @@ At low $ T $, high $ \beta $,
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=\linewidth]{fermi-func.pdf}
-	\caption{Fermi Function(occupation number) at different Temperature.}
+	\caption{Fermi Function(occupation number) at different Temperature. The width $ \propto k_B T$ }
 	\label{fig:fermifunc}
 \end{figure}
 
@@ -1994,4 +1994,191 @@ At low $ T $, high $ \beta $,
 
 \[ N = \sum_k f( \epsilon_k ) = \int_{0}^{\infty} D(\epsilon)f(\epsilon) = \int_0^{\epsilon_f} d \epsilon \: \underbrace{D(\epsilon)}_{X\sqrt{\epsilon}}   \] 
 \[ = X \frac{2}{3} \epsilon_{f}^{\frac{3}{2}} \implies \epsilon_f \propto (\frac{N}{V})^{\frac{2}{3}}\] 
+
+\newpage
+\section{Fermions at Low T, Continued}
+The Fermi function:
+\[ f(\epsilon) = \frac{1}{e^{\beta(\epsilon-\mu)}+1} > 0 \quad \forall \: \epsilon,N\] 
+
+\[ T \to 0 \implies f(\epsilon) = \Theta(\epsilon_r - \epsilon) \] 
+\[ \epsilon_f = \lim_{T \to 0} \mu \] 
+For the grand cannonical ensemble:
+\[\left \langle N \right \rangle  = \sum_{\vec{k}} f(\epsilon_k) = \int_0^{\infty} d \epsilon D(\epsilon) f(\epsilon)
+\underbrace{=}_{T=0} \int_0^{\epsilon_f} d \epsilon 
+\underbrace{D(\epsilon)}_{\sqrt{\epsilon}\cdot X} \] 
+Particles in a 3D box.
+\[ = X \frac{2}{3} \epsilon_f^{\frac{3}{2}} \implies \epsilon_f \propto \left( \frac{N}{V} \right)^{\frac{2}{3}} \] 
+For metals, $ \frac{\epsilon_f}{k_B} \propto 10^4 $ K 
+So
+\[ \frac{k_BT}{\epsilon_f} \sim \frac{300}{10^4} << 1 \] 
+$k_BT << \epsilon_f $ at room T.
+\subsection{Total Energy}
+At $ T = 0 $ 
+\[U = \int_0^{\infty} \:d{\epsilon} {D(\epsilon) \epsilon f(\epsilon)} \]
+\[ = \int_0^{\epsilon_f} d \epsilon D(\epsilon ) \epsilon \] 
+\[ = X \frac{2}{5} \epsilon_f^{\frac{5}{2}} \] 
+
+\[ \frac{U}{N} = \frac{X \frac{2}{5} \epsilon_f^{\frac{5}{2}}}{X \frac{2}{3} \epsilon_f^{\frac{3}{2}}} \frac{3}{5} \epsilon_f \] 
+
+\subsection{Compressibility}
+\[ PV = \frac{2}{3}U = \frac{2}{5} \epsilon_f N \quad \epsilon_f = Y \left(\frac{N}{V} \right)^{\frac{2}{3}}\] 
+\[ \implies P = \frac{2}{5} \epsilon_f \frac{N}{V} = \frac{2}{5}Y \left( \frac{N}{V} \right)^{\frac{5}{3}} \] 
+\[ K = -\frac{1}{V} \left( \frac{\partial V}{\partial P} \right) = - \frac{1}{V} \left( \frac{\partial P}{\partial V} \right)^{-1} = -\frac{1}{V}\left( \frac{2}{5}YN^{\frac{5}{3}}\frac{\partial }{\partial V} V^{-\frac{5}{3}}  \right)^{-1}    \] 
+\[ = \frac{1}{V}\left( \frac{2Y}{3}(\frac{N}{V})^{\frac{5}{3}} \frac{1}{V} \right)^{-1}  \] 
+\[ \implies K^{-1} = \frac{2}{3}
+\overbrace{Y \left(\frac{N}{V} \right)^{\frac{2}{3}}}^{\epsilon_f} \frac{N}{V}\] 
+\[ = \frac{2}{3} \epsilon_f \frac{N}{V} \] 
+The large value of $ \epsilon_f $ and high electron density of metals means that the inverse compressibility is large or equivalently the compressibility is small. \\
+This gives the correct magnitude for the compressibility of metals, for copper $ K \sim 10^{-10} P_{a}^{-1} $.
+
+\subsection{Low T Expansion (Sommerfeld Expansion)}
+An integral $ I $,
+\[ I = \int_0^{\infty} d \epsilon \: \phi(\epsilon) f(\epsilon) \] 
+
+Rewrite the Fermi fucntion
+\[ f(\epsilon) = \frac{1}{e^{\beta(\epsilon-\mu)}+1} > 0 \quad \forall \: \epsilon,N\] 
+to
+\[ = \frac{1+ e^{\beta (\epsilon -\mu)}-e^{\beta (\epsilon -\mu)}}{e^{\beta( \epsilon - \mu )}+1} \] 
+\[  = 1 - \frac{1}{e^{-\beta(\epsilon-\mu)}+1} \] 
+\[ I = \int_0^{-\mu} d \epsilon \phi(\epsilon) 
+\underbrace{f(\epsilon)}_{1-\frac{1}{e^{-\beta(\epsilon-\mu)}+1}} 
++ \int_{\mu}^{\infty} d \epsilon \phi(\epsilon) 
+\underbrace{f(\epsilon)}_{\frac{1}{e^{\beta(\epsilon-\mu)}+1}} \] 
+
+\[  = \int_0^{\mu} d \epsilon \phi( \epsilon ) - \int_0^{\mu} d \epsilon \frac{\phi(\epsilon)}{1 + e^{-\beta(\epsilon-\mu)}} + \int_0^{\infty} d \epsilon \frac{ \phi(\epsilon) }{e^{\beta(\epsilon-\mu)}+1}\] 
+Substitution
+\[ I = \int_0^{\mu} d \epsilon \phi(\epsilon) - \int_{\beta \mu}^0 d \left( -\frac{z}{\beta} \right) \frac{\phi(\mu - \frac{z}{\beta})}{e^{z} + 1} + \int_0^{\infty} d \left( \frac{z}{\beta} \right) \frac{\phi(\mu + \frac{z}{\beta})}{e^{z}+1}  \] 
+
+For $ \beta \mu >> 1 $ we replace with $ \infty $ 
+\[ I = \int_0^{\mu} d \epsilon \phi( \epsilon ) + \int_0^{\infty} \frac{dz}{\beta} \frac{\phi(\mu+ \frac{z}{\beta})- \phi(\mu- \frac{z}{\beta})}{e^{z}+1}  \] 
+Taylor Expand:
+\[ \phi(\mu + \frac{z}{\beta}) = \phi(\mu) + \frac{z}{\beta}\phi'(\mu) \] 
+\[ \phi(\mu - \frac{z}{\beta}) = \phi(\mu) - \frac{z}{\beta}\phi'(\mu) \] 
+\[ I = \int_0^{\mu} d \epsilon \: \phi(\epsilon) + \int_0^{\infty} \frac{dz}{\beta} \left( \frac{2z}{\beta} \phi'(\mu) + \frac{2}{3!}\left( \frac{z}{\beta} \right)^{3} \phi'''(\mu) + \cdots \right)  \] 
+\[ = \int_0^{\mu} \phi(\epsilon) + (k_BT)^2 \phi'(\mu) \cdot 2 \int_0^{\infty} dz \frac{z}{e^{z}+1} + (k_BT)^4 \phi'''(\mu) \frac{7\pi^4}{360} + ...\] 
+
+
+\subsection{Heat Capacity of Fermions at low T}
+\[ D(\epsilon) = X\sqrt{\epsilon} \] 
+\[ U = \int_0^{\infty} d \epsilon \: D(\epsilon) \epsilon f(\epsilon) \] 
+\[ \implies \phi'(\mu) = \frac{3}{2}X \mu^{\frac{1}{2}} \] 
+\[ U = \underbrace{\int_0^{\mu} d \epsilon X \epsilon^{\frac{3}{2}}}_{\frac{2}{5}X \mu^{5/2}} + \frac{\pi^2}{6} (k_BT)^2 \: \frac{3}{2} X \mu^{ \frac{1}{2} } + \cdots \] 
+
+How does $ \mu $ depend on $ T $ at constant $ N $:
+\[ \left( \frac{\partial U}{\partial T} \right)_{N}  \] 
+\[ \left \langle N \right \rangle \int_0^{\infty} d \epsilon \: D( \epsilon ) f( \epsilon )\] 
+\[ = \underbrace{\int_0^{\mu} d \epsilon X \epsilon^{ \frac{1}{2} }}_{ X\frac{2}{3}\mu^{\frac{3}{2}} } + \frac{\pi^2}{6}(k_BT)^2 \: \frac{1}{2}X \mu^{- \frac{1}{2}} \] 
+At $ T = 0 $ 
+\[ \left \langle N \right \rangle = \frac{2}{3} X \epsilon_f^{\frac{3}{2}} \] 
+\[ \implies \epsilon_f^{3/2} = \mu^{\frac{3}{2}} + \frac{\pi^2}{8} (k_BT)^2 \mu^{- \frac{1}{2}}\] 
+\[  = \mu^{3/2} \left( 1 + \frac{\pi^2}{8} \left(  \frac{k_BT}{\mu} \right)^2  \right)  \] 
+\[ \mu = \epsilon_f \left( 1 + 
+\underbrace{\frac{\pi^2}{8} \left(  \frac{k_BT}{\mu} \right)^2}_{\text{small}} \right)^{-\frac{2}{3}} \] 
+Since that term is small we can replace $ \mu $ by $ \epsilon_f $ the error will be $ (k_BT/\epsilon_f)^4 $  
+\[ \approx \epsilon_f \left( 1 + 
+\frac{\pi^2}{8} \left(  \frac{k_BT}{\mu} \right)^2 \right) \] 
+\[ (1+\Delta)^{-\frac{2}{3}} \approx 1 - \frac{2}{3} \Delta  \] 
+\[ \approx \epsilon_f \left( 1 - \frac{\pi^2}{12} \left(  \frac{k_BT}{\mu} \right)^2 + \cdots \right)\] 
+Then 
+\[ U = \frac{2}{5} \mu^{a} 
++ \frac{\pi^2}{6} (k_BT)^2 \frac{3}{2} X \mu^{ \frac{1}{2} } \] 
+\[  = \frac{2}{5}X \epsilon_f ^{\frac{5}{2}} \left( 1 - \frac{\pi^2}{12} \left( \frac{k_BT}{\epsilon_f} \right)^2  \right)^{\frac{5}{2}} 
++ \frac{\pi^2}{6}(k_BT)^2 \: \frac{3}{2} X \epsilon_f^{1/2} 
+\underbrace{\left( 1 - \frac{\pi^2}{12} \left( \frac{k_BT}{\epsilon_f} \right)^2 \right)^{ \frac{1}{2} } }_{1 - \frac{\pi^2}{12} \left( \frac{k_BT}{\epsilon_f} \right)^2 }  \] 
+
+\[ = \frac{2}{5}X \epsilon_f^{\frac{5}{2}} + (\frac{\pi^2}{6} \frac{3}{2} - \frac{\pi^2}{12}) 
+\left(\frac{k_BT^2}{\epsilon_f} \right)^2 X \epsilon_f^{\frac{5}{2} }\] 
+
+\[ c_v = \frac{1}{N} \left( \frac{\partial U}{\partial T} \right)_{N,V} = \frac{\pi^2}{3} k_B \left( \frac{k_BT}{\epsilon_f} \right) X{\epsilon_f}^{3/2} \] 
+\[ = \frac{\pi^2}{2} N k_B \left( \frac{k_BT}{\epsilon_f} \right) \propto  T \] 
+
+\section{Ising Model in d>1: Mean Field approximation}
+\[ H = -J \sum_{\left \langle j,k \right \rangle } \sigma_j\sigma_k - h \sum_j \sigma_j \] 
+$ J > 0 $: favours alignment of spins. \\
+$ h > 0 $: $ \sigma = +1 $ is favoured.
+Expect: high-T: Disordered phase, as many $ \uparrow, \downarrow $ 
+\subsection{Mean Field Approximation (MFA)}
+Magnetisation per site: 
+\[ m = \frac{1}{N}\sum_j \left \langle \sigma_j \right \rangle  \] 
+with $ m \in [-1,1] $ \\
+Write $ \sigma_j $ as the deviation from the average m:
+\[ \tilde \sigma_j \equiv \sigma_j - m \] 
+\[ \sigma_j = m + \sigma_j - m = m + \sigma_j \] 
+Then
+\[ \sigma_j\sigma_k = (m + \tilde \sigma_j) (m+\tilde \sigma_k)  = m^2 + m \tilde \sigma_j + m \tilde \sigma_k + \tilde \sigma_j \tilde \sigma_k\] 
+
+Once $ \tilde \sigma_j \tilde \sigma_k $ is negleted, we can rewrite in terms of $ \sigma_j $ again. \\
+\[ \sigma_j \sigma_k \approx m^2 + m (\sigma_j - m) + m(\sigma_k-m) = -m^2 + m \sigma_j + m \sigma_k \] 
+
+\[ -J \sum_{\left \langle j,k \right \rangle } \sigma_j \sigma_k = = - \frac{J}{2}\sum_j 
+\underbrace{ \sum_{\delta}}_{\text{all nbrs of site j}} \sigma_j \sigma_{j+\delta} \] 
+
+Let $ z $ be the number of nearest neighbours of site $ j $, the coordination number.\\ 
+On our lattice
+\[ Z = \sum_{\delta} 1 \] 
+(4 for square lattice, 6 for cubic lattice)
+
+\[ -J \sum_{\left \langle j,k \right \rangle } \sigma_j \sigma_k = -\frac{J}{2} \sum_j \sum_{\delta} (-m^2+m\sigma_j+m\sigma_{j+\delta})  \] 
+\[ = -\frac{J}{2}\left( NZ(-m^2) + mz\sum_j \sigma_j + m\sum_{\delta}\sum_{j} \underbrace{\sigma_{j+\delta}}_{\sum_j \sigma_j} \right)  \] 
+\[ = \frac{J}{2}NZm^2 - JmZ\sum_j \sigma_j \] 
+In MFA
+\[ H = N \frac{J}{2} Zm^2 - \underbrace{(h+JmZ)}_{h_{eff}} \sum_j \sigma_j \] 
+
+The partition function:
+\[ \mathcal{Z} = \sum_{\{\sigma\}} e^{-\beta  \frac{NJ}{2} zm^2 + \beta h_{eff} \sum_j \sigma_j }\] 
+\[ = e^{-\beta N \frac{JZ}{2} m^2 \left( \sum_{\sigma_1} e^{-\beta h_{eff} \sigma_1} \right)^{N} } \] 
+\[  e^{-\beta N \frac{JZ}{2} m^2} \underbrace{2\cosh(\beta h_{eff})}_{\mathcal{Z}_1}  \] 
+
+\textbf{$ m $ is determined self-consistently} 
+\[ m = \frac{1}{N}\sum_j \left \langle \sigma_j \right \rangle = \left \langle \sigma_1 \right \rangle = \frac{1}{\mathcal{Z}_1 } \sigma_1 e^{\beta h_{eff}} \sigma_1 \] 
+\[  = \frac{1}{\mathcal{Z}_1} (2\sinh(\beta h_{eff})) = \tanh(\beta h_{eff})\] 
+recall $ h_{eff} $ contains $ m $.
+\subsection{MF self-consistent eq.}
+\[ m = \tanh(\beta h + \beta JZm) \] 
+an equation for $ m $. 
+For $ h =0 $,
+\[ m = \tanh(\beta JZm) \] 
+
+set $ x = \beta J Zm \implies m = \frac{X}{\beta J Z} =  \frac{k_BT}{JZ}$ 
+\[ X  \frac{k_BT}{JZ} = \tanh(X) \] 
+
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{}
+	\caption{}
+	\label{fig:}
+
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{ccqqqq}{rgb}{0.8,0,0}
+\definecolor{qqwuqq}{rgb}{0,0.39215686274509803,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-4,
+xmax=4,
+ymin=-4,
+ymax=4,
+xtick={-1,...,3},
+ytick={-2,...,3},]
+\draw[line width=2pt,color=qqwuqq,smooth,samples=100,domain=-4:4] plot(\x,{tanh((\x))});
+\draw[line width=2pt,color=ccqqqq,smooth,samples=100,domain=-4:4] plot(\x,{2*(\x)});
+\draw[line width=2pt,color=qqqqff,smooth,samples=100,domain=-4:4] plot(\x,{0.5*(\x)});
+\begin{scriptsize}
+\draw[color=qqwuqq] (-2,-0.4) node {$\tanh(x)$};
+\draw[color=ccqqqq] (-2,-2.4295445149218278) node {$highT$};
+\draw[color=qqqqff] (-2.3657035638494426,-1.5) node {$lowT$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+High-T solution: $ m=0 $ for $ \frac{k_BT}{JZ} > 1 $ 
+Low-T solution: $ m = \pm m_0, m=0 $ for $ \frac{k_BT}{JZ} < 1$  
+The critical temperature is
+\[ k_BT_c = JZ \] 
+
+\textbf{The solution $ m = 0 $ turns out to be unstable!} 
 \end{document}

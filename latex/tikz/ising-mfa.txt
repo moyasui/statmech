@@ -1,0 +1,46 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+ 
+%<<<<<<<WARNING>>>>>>>
+% PGF/Tikz doesn't support the following mathematical functions:
+% cosh, acosh, sinh, asinh, tanh, atanh,
+% x^r with r not integer
+
+% Plotting will be done using GNUPLOT
+% GNUPLOT must be installed and you must allow Latex to call external
+% programs by adding the following option to your compiler
+% shell-escape    OR    enable-write18 
+% Example: pdflatex --shell-escape file.tex 
+
+\begin{document}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{ccqqqq}{rgb}{0.8,0,0}
+\definecolor{qqwuqq}{rgb}{0,0.39215686274509803,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-2.542447338704222,
+xmax=3.1084439073472088,
+ymin=-2.530190275603022,
+ymax=1.628197982785818,
+xtick={-2.4000000000000004,-2.2,...,3},
+ytick={-2.4000000000000004,-2.2,...,1.6},]
+\clip(-2.542447338704222,-2.530190275603022) rectangle (3.1084439073472088,1.628197982785818);
+\draw[line width=2pt,color=qqwuqq,smooth,samples=100,domain=-2.542447338704222:3.1084439073472088] plot(\x,{tanh((\x))});
+\draw[line width=2pt,color=ccqqqq,smooth,samples=100,domain=-2.542447338704222:3.1084439073472088] plot(\x,{2*(\x)});
+\draw[line width=2pt,color=qqqqff,smooth,samples=100,domain=-2.542447338704222:3.1084439073472088] plot(\x,{0.5*(\x)});
+\begin{scriptsize}
+\draw[color=qqwuqq] (-2.444256352673789,-0.927222428656202) node {$RHS$};
+\draw[color=ccqqqq] (-1.0892207454538108,-2.4295445149218278) node {$LHShighT$};
+\draw[color=qqqqff] (-2.3657035638494426,-1.1923380909383712) node {$LHSlowT$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}
