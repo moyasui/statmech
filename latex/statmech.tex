@@ -2144,9 +2144,8 @@ set $ x = \beta J Zm \implies m = \frac{X}{\beta J Z} =  \frac{k_BT}{JZ}$
 
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[width=0.8\textwidth]{}
-	\caption{}
-	\label{fig:}
+	\caption{Ising}
+	\label{fig:ising}
 
 \definecolor{qqqqff}{rgb}{0,0,1}
 \definecolor{ccqqqq}{rgb}{0.8,0,0}
@@ -2176,9 +2175,64 @@ ytick={-2,...,3},]
 \end{figure}
 
 High-T solution: $ m=0 $ for $ \frac{k_BT}{JZ} > 1 $ 
-Low-T solution: $ m = \pm m_0, m=0 $ for $ \frac{k_BT}{JZ} < 1$  
+Low-T solution: $ m = \pm m_0, m=0 $ for $ \frac{k_BT}{Jz} < 1$  
+\begin{shaded*}
+
 The critical temperature is
-\[ k_BT_c = JZ \] 
+\[ k_BT_c = Jz \] 
+\end{shaded*}
 
 \textbf{The solution $ m = 0 $ turns out to be unstable!} 
+
+\section{MFA continued.}
+\[ H = -J \sum_{\left \langle i,j \right \rangle } \sigma_i \sigma_j - h\sum_j \sigma_j \] 
+\[ \approx N \frac{J}{2}z m^2 - \left( h+Jmz \right) \sum_j \sigma_j \] 
+
+where $ m = \frac{1}{N}\sum_i \left \langle \sigma_i \right \rangle  $, $ z $ is the number of neighbours on a single site on the lattice, $ z=4 $ for square lattice.
+
+\[ \mathcal{Z} = \prod_j \sum_{\sigma_j = \pm 1} e^{-\beta \left( \frac{JZm^2}{2}-\left( h+JmZ \right) \sigma_j \right) } \] 
+\[ = e^{- \frac{1}{2} \beta NJzm^2} [2\cosh(\beta(h+JmZ))]^{N} \] 
+
+The free energy:
+\[ -\beta F = \ln(\mathcal{Z})  \] 
+\[ = -\beta \frac{NJzm^2}{2}+N\ln(2) +N\ln((\cosh(\beta(h+Jmz))))  \] 
+set $ h=0 $ 
+\[ F = N\left( \frac{Jzm^2}{2} - k_BT \ln(2)-k)BT \ln(\cosh(\beta Jmz ))   \right)  \] 
+Minimise:
+\[ \left( \frac{\partial F}{\partial m} \right) = 0 \implies N \left( Jzm - \frac{k_BT\sinh(\beta Jmz)}{\cosh(\beta Jmz)} \beta Jz \right) = 0 \] 
+\[ \implies NJz \left( m - \tanh(\beta Jmz) \right) = 9  \] 
+\begin{shaded*}
+
+\[ \implies m = \tanh(\beta Jmz) \] 
+Note that this is the same equation that we found by requiring self-consistency: $ \left \langle \sigma_1 \right \rangle = m $.
+
+\end{shaded*}
+For stability:
+\[ \left( \frac{\partial ^2F}{\partial m^2} \right) > 0 \] 
+\[ \frac{\partial ^2F}{\partial m^2} = NJz \left( 1 - \frac{\beta Jz}{\cosh(\beta Jzm)} \right)   \] 
+Now for $ m=0 $ (which is a solution of $ \frac{\partial F}{\partial m} =0 $ for all T )
+
+\[ \frac{\partial ^2F}{\partial m^2} NJz(1-\beta Jz) \underbrace{> 0}_{\text{stability}}  \]  
+so system with $ m=0 $ is stable for $ \beta Jz <1 \implies \frac{k_BT}{Jz} > 1 $. 
+So there are only $ 2 $ stable solution below $ T_c $: $ m = \pm m_{\text{finite}} $ 
+
+\subsection{Behaviour of m close to $ T_c $: Critical Exponents}
+
+\[ m = \tanh(\beta Jzm) \] 
+For $ T < T_c $, but very close to $ T_c $, m is small. 
+Want to know how $ m $ changes with T for $ T $ close to $ T_c $.
+So we can expand the right hand side:
+\[ \tanh(\beta Jzm) \approx \beta Jzm - \frac{1}{3} (\beta Jzm)^3 + ...\] 
+then
+\[ m = \beta Jzm - \frac{1}{3} (\beta Jzm)^3\] 
+\[ \frac{1}{3}(\beta Jz)^2 m^2 = (\beta Jz -1) \] 
+\[ m^2 = \frac{\beta Jz -1}{1/3 (\beta Jz)^3} = 3\left( \frac{k_BT}{Jz}^2 \right) \left(1-\frac{k_BT}{Jz} \right) \] 
+
+Now $ \frac{k_BT_c}{Jz} = 1 $ 
+\[ \implies m^2 = 3\left( \frac{T}{T_c} \right)^2 \left( 1-\frac{T}{T_c} \right)  \] 
+So for $ T \leq T_c: m^2 \sim 3\left( \frac{T_c-T}{T_c} \right) $  
+\[ \implies m \sim \left(\frac{T_c-T}{T_c}\right)^{ \frac{1}{2} } \] 
+This $ \frac{1}{2} $ is an example of a critical exponent $ \beta $ .
+Figure for $m$ vs $T$.
+The correct answer is $ \beta = \frac{1}{8} $.
 \end{document}
