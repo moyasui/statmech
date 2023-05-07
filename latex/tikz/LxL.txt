@@ -1,0 +1,46 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-3.45,
+xmax=17.590000000000003,
+ymin=-13.470000000000004,
+ymax=3.4700000000000006,
+xtick={-3,-2,...,17},
+ytick={-13,-12,...,3},]
+\clip(-3.45,-13.47) rectangle (17.59,3.47);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,2) -- (2,2) -- (2,0) -- (0,0) -- cycle;
+\draw [line width=2pt,color=zzttqq] (0,2)-- (2,2);
+\draw [line width=2pt,color=zzttqq] (2,2)-- (2,0);
+\draw [line width=2pt,color=zzttqq] (2,0)-- (0,0);
+\draw [line width=2pt,color=zzttqq] (0,0)-- (0,2);
+\begin{scriptsize}
+\draw [fill=ududff] (0,2) circle (2.5pt);
+\draw[color=ududff] (0.15,2.42) node {$A$};
+\draw [fill=ududff] (2,2) circle (2.5pt);
+\draw[color=ududff] (2.15,2.42) node {$B$};
+\draw [fill=xdxdff] (2,0) circle (2.5pt);
+\draw[color=xdxdff] (2.15,0.44) node {$C$};
+\draw [fill=uuuuuu] (0,0) circle (2pt);
+\draw[color=uuuuuu] (0.15,0.4) node {$D$};
+\draw[color=zzttqq] (1.07,1.92) node {$a$};
+\draw[color=zzttqq] (1.75,1.24) node {$b$};
+\draw[color=zzttqq] (1.07,0.56) node {$c$};
+\draw[color=zzttqq] (0.39,1.24) node {$d$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}
