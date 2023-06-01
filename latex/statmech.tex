@@ -2604,5 +2604,92 @@ The exponent $ \mu = \frac{1}{y_t} $ can be gotten by computing the slopes at $ 
 
 
 So a plot of $ \ln(\frac{\partial }{\partial x} \frac{\xi}{L} )|_{T_c}  $ gives a straight line when plotted vs $ \ln(L)  $ 
+
+\section{Symmetric Long walks}
+$ N $ large, $ P= \frac{1}{2} $ 
+\[ P(R) = \frac{N!}{R!(N-R)!} ( \frac{1}{2}^N ) \] 
+\[ x = (2R-N)a \implies = \frac{N}{2}(1+\frac{X}{Na})\] 
+This makes sense: if $ x=0 $ you end up the same place, and $ R = \frac{N}{2} $ the amount of right steps.
+For large $ N $ (and $ R $), the binomial distribution becomes Gaussian (Stirlings Formula).
+The probability for being at position $ x $ is then
+\[ P(x) = \sqrt{\frac{2}{\pi N} e^{\frac{-x^2}{2Na^2}}} \] 
+and $ Na^2 = \left \langle x^2 \right \rangle $ 
+Here X is discrete $ \sum_{x} P(x)=1 $. \\
+
+Introduce Probability Density
+\begin{equation}
+	\mathcal{P}(x) = \frac{P(x)}{2a}
+\end{equation}
+The space between possible outcomes.
+\[ \int_{-\infty}^{\infty} dx \mathcal{P}(x) = \int_{{-\infty}}^{{\infty}} {dx} \: {\frac{1}{\sqrt{2\pi Na^2}}} {e^{\frac{-x^2}{2Na^2}}} = 1
+ \] 
+
+Introduce $ \Delta t $, $ t = N \Delta t $ 
+\[ 
+\begin{aligned}
+\mathcal{P}(x,t) &= \frac{1}{\sqrt{2\pi \frac{a^2}{\Delta t}}} e^{\frac{-x^2}{2 \frac{a^2}{\Delta t}t}} \\
+		 &= \frac{1}{\sqrt{2\pi 2 D t}}e^{-\frac{x^2}{2(2Dt)}} 
+\end{aligned}
+\]
+Small $ t $ sharper gaussian, larger $ t $ wider gaussian (width $ \propto \sqrt{2Dt} $ )
+With $ M $ random walkers we can define a density per unit length
+\begin{equation}
+	\rho(x,t) = M\mathcal{P}(x,t)
+\end{equation}
+Observation: $ \rho(x,t) $ satisfies the diffusion equation:
+\[ \frac{\partial \rho}{\partial t} = D \frac{\partial ^2\rho}{\partial x^2} \] 
+
+\[ \rho = \frac{M}{\sqrt{2\pi} \sigma} e^{\frac{-x^2}{2\sigma^2}} \quad \sigma = \sqrt{2Dt} \]
+Prove that $ \rho $ satisfies the Diff eq: L.H.S
+\[
+\begin{aligned}	
+	\left( \frac{\partial t}{\partial t} \right) &= \frac{\partial \rho}{\partial \sigma} \frac{\partial \sigma}{\partial t} \\
+	&= \frac{D}{\sigma} \frac{M}{\sqrt{2M}}\frac{\partial }{\partial \sigma}
+	\underbrace{\left( \frac{1}{\sigma} e^{-\frac{x^2}{2\sigma^2}} \right)}_{\frac{1}{X}\frac{\partial }{\partial \sigma} \left( \frac{x}{\sigma} e^{-(\frac{x}{\sigma})^2 \frac{1}{2}} \right) } \\
+	\text{Set } \eta = \frac{x}{\sigma}, \: \frac{\partial }{\partial \sigma} = \frac{\eta}{\sigma} \frac{\partial }{\partial \eta} \\
+	&= \frac{D}{\sigma} \frac{M}{\sqrt{2\pi}} \frac{1}{X} \frac{\partial \eta}{\partial \sigma} \frac{\partial }{\partial \eta} \left( \eta e^{-\frac{\eta^2}{2}} \right) \\
+	&= -\frac{D}{\sigma^2} \frac{M}{\sqrt{2\pi}}\frac{\partial }{\partial \eta} \left( \eta e^{-\frac{\eta^2}{2}} \right) \\
+\end{aligned}
+\]
+RHS
+\[ 
+\begin{aligned}
+	D \frac{\partial ^2\rho}{\partial x^2} &= D \frac{M}{\sqrt{2\pi}\sigma} \frac{\partial }{\partial x}
+	\underbrace{\left( \frac{\partial }{\partial x} e^{-\frac{x^2}{2\sigma^2}} \right)}_{-\frac{x}{\sigma^2} e^{\frac{-x^2}{2\sigma^2}}}  \\
+	&= -D \frac{M}{\sqrt{2\pi}\sigma^3} 
+	\underbrace{\frac{\partial }{\partial x} \left( x e^{-\frac{x^2}{2\sigma^2}} \right)  } \\
+	x = \eta \sigma \: \frac{x^2}{2\sigma^2} = \eta^2/2 \\
+	  &= -D \frac{M}{\sqrt{2\pi}\sigma^3} \frac{\partial }{\partial \eta} (\eta e^{\frac{-\eta^2}{2}})
+\end{aligned}
+\]
+Satisfies the diffusion equation, justifies the name of diffusion constant D.
+This has nothing to do with interactions. It's just a consequence of probability.
+\footnote{Apparently it's just ugly maths and we should forget about it ASAP.}
+
+This result is more general. It holds for any symmetric random walk with arbitrary symmetric step distribution. \\
+Consider a general random walk in $ 1D $ 
+\[ x(t + \Delta t) = x(t) + l, \] 
+where $ l $ is a stochastic variable from a distribution $ \chi(l) $ 
+If $ \chi(l) $ satisfies 
+\[ \int_{-\infty}^{\infty} dl \chi(l) = 1, \: \int_{-\infty}^{\infty} dl \chi{l} l = 0\] The second equation is true for symmetric walks, and
+\[ \int_{-\infty}^{\infty} dl \chi(l) l^2 = \alpha^2 \] 
+In our simple case
+\[ \chi(l) = \frac{1}{2} \delta(l-a) + \frac{1}{2} \delta(l+a) \] 
+Then $ \rho(x,t) $ will satisfy the diffusion equation with $ D = \frac{a^2}{2 \Delta t} $ 
+\[ 
+\begin{aligned}
+	\mathcal{P}(x, t+ \Delta t) = \int_{-\infty}^{\infty} \mathcal{P} (x-l, t) \chi(l)
+\end{aligned}
+\] 
+The first term is the probability of being at $ x-l $ at $ t $ and the second term is the probability of step length $ l $ in the last step.
+
+For typical $ l << x $, we can expand $ \rho(x-l,t) $ 
+\[ \mathcal(x-l, t) = \mathcal{P}(x,t) - l \frac{\partial \mathcal{P}}{\partial x} (x,t) + \frac{l^2}{2!} \frac{\partial ^2\mathcal{P}}{\partial x^2} (x,t) + \mathcal{O}(l^3)\] 
+\[ \mathcal{P}(x,t+\Delta t) = \mathcal{P}(x,t) \int_{-\infty}^{\infty} dl \chi(l) - \frac{\partial \mathcal{P}}{\partial x} (x,t) \int_{-\infty}^{\infty} dl l \chi(l) + 
+\frac{1}{l!} \frac{\partial ^2P}{\partial x^2}(x,t) \int_{-\infty}^{\infty} dl l^2 \chi(l)  \] 
+The first term is $1$ (probability) and the second term is $ 0 $ (symmetric, and the last integral is $a^2$ 
+move $ \mathcal{P} $ to the L.H.S and divide by $ \Delta t $:
+\[ \frac{\partial \mathcal{x,t}}{\partial t} \equiv \frac{\partial \mathcal{P}(x,t + \Delta t) - \mathcal{P}(x,t)}{\partial x} = \frac{a^2}{2 \Delta t} \frac{\partial ^2 \mathcal{P}(x,t)}{\partial x^2} \] 
+Diffusion equation with $ D = \frac{a^2}{2 \Delta t}$.
 \end{document}
 
